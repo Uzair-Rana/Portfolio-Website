@@ -1,0 +1,47 @@
+export const certifications = [
+    {
+        slug: 'cca',
+        title: 'Certificate in Computer Applications (CCA)',
+        issuer: 'Professional Certification Body',
+        tagline: 'Core computer applications and productivity tools certification.',
+        iconName: 'certificate',
+        iconColor: 'text-cyan-400',
+        gradient: 'from-cyan-500/20 to-blue-500/10',
+        border: 'border-cyan-500/20',
+        accentColor: '#22d3ee',
+        highlights: [
+            { label: 'Certificate', value: 'CCA' },
+            { label: 'Type', value: 'Professional Certification' },
+            { label: 'Status', value: 'Completed' },
+        ],
+        details: [
+            'Completed a comprehensive certification program covering core computer applications and digital productivity tools.',
+            'Gained proficiency in office productivity suites, document management, and fundamental computing concepts.',
+            'Demonstrated competency in practical computer skills applicable to professional environments.',
+        ],
+        skills: ['Microsoft Office Suite', 'Document Management', 'Spreadsheet Analysis', 'Presentation Design', 'Digital Productivity'],
+    },
+    {
+        slug: 'intl-conference',
+        title: 'International Conference on Science and Technology',
+        issuer: 'International Academic Body',
+        tagline: 'Participant in an international academic conference bridging science and technology.',
+        iconName: 'flask',
+        iconColor: 'text-violet-400',
+        gradient: 'from-violet-500/20 to-purple-500/10',
+        border: 'border-violet-500/20',
+        accentColor: '#a78bfa',
+        highlights: [
+            { label: 'Event', value: 'International Conference' },
+            { label: 'Type', value: 'Academic Participation' },
+            { label: 'Status', value: 'Completed' },
+        ],
+        details: [
+            'Participated in an international academic conference focused on the intersection of science and technology disciplines.',
+            'Engaged with researchers, academics, and industry professionals from diverse technical backgrounds.',
+            'Gained exposure to cutting-edge research and emerging trends in science and technology.',
+            'Broadened academic perspective through interaction with international scholarly community.',
+        ],
+        skills: ['Research Exposure', 'Academic Networking', 'Technical Discourse', 'Cross-disciplinary Thinking'],
+    },
+]

@@ -1,0 +1,55 @@
+export const educationList = [
+    {
+        slug: 'bs-cs-uos',
+        degree: 'Bachelor of Science in Computer Science',
+        institution: 'University of Sargodha, Bhakkar Campus',
+        period: 'Aug 2021 – May 2025',
+        cgpa: '3.57',
+        cgpaMax: '4.00',
+        cgpaPct: 89.25,
+        tagline: 'Four-year CS degree with strong focus on software engineering and systems design.',
+        highlights: [
+            { label: 'Degree', value: 'BS Computer Science' },
+            { label: 'Institution', value: 'University of Sargodha, Bhakkar Campus' },
+            { label: 'Duration', value: 'Aug 2021 – May 2025' },
+            { label: 'CGPA', value: '3.57 / 4.00' },
+        ],
+        details: [
+            'Completed a rigorous four-year Computer Science program covering data structures, algorithms, software engineering, database systems, and computer networks.',
+            'Maintained a strong academic record with a CGPA of 3.57/4.00, placing in the top tier of the graduating class.',
+            'Developed practical skills through project-based coursework in web development, object-oriented programming, and system design.',
+            'Applied theoretical knowledge to real-world problems, building a solid foundation for professional software development.',
+        ],
+        courses: [
+            'Data Structures & Algorithms',
+            'Database Systems',
+            'Software Engineering',
+            'Computer Networks',
+            'Object-Oriented Programming',
+            'Web Technologies',
+            'Operating Systems',
+            'Artificial Intelligence',
+        ],
+        fyp: {
+            title: 'Cryptocurrency Analysis & Prediction System',
+            subtitle: 'Final Year Project',
+            description:
+                'Developed a full-stack web application for real-time cryptocurrency market analysis and price prediction. The system fetches live market data via APIs, performs statistical analysis, and applies machine learning models to forecast price trends for major cryptocurrencies.',
+            bullets: [
+                'Built a real-time data pipeline to fetch and process live cryptocurrency prices from public market APIs (CoinGecko, Binance).',
+                'Implemented machine learning models (LSTM, Linear Regression) to predict short-term price movements for BTC, ETH, and other major coins.',
+                'Developed interactive data visualizations including candlestick charts, trend lines, and prediction overlays.',
+                'Designed a responsive frontend dashboard for monitoring portfolio performance and market signals.',
+                'Integrated historical data analysis to identify patterns, volatility indicators, and market sentiment.',
+                'Achieved measurable prediction accuracy through model tuning and cross-validation on historical datasets.',
+            ],
+            tech: ['Python', 'Machine Learning', 'LSTM', 'Pandas', 'NumPy', 'Matplotlib', 'REST API', 'Data Visualization'],
+            outcomes: [
+                { label: 'Models Used', value: 'LSTM, Linear Regression' },
+                { label: 'Data Sources', value: 'CoinGecko, Binance API' },
+                { label: 'Coins Covered', value: 'BTC, ETH, and 10+ altcoins' },
+                { label: 'Project Type', value: 'Final Year Project (FYP)' },
+            ],
+        },
+    },
+]
