@@ -251,9 +251,10 @@ export function SettingsProvider({ children }) {
 
     const update = useCallback((patch) => setSettings((p) => ({ ...p, ...patch })), [])
     const resetAll = useCallback(() => {
+        // NOTE: Password is intentionally NOT cleared on reset.
+        // Only the Security tab can change/remove the password after verifying the current one.
         setSettings(DEFAULT_SETTINGS)
         setData({ projects: DEFAULT_PROJECTS, experiences: DEFAULT_EXPERIENCES, certifications: DEFAULT_CERTIFICATIONS })
-        localStorage.removeItem(PASS_KEY)
     }, [])
 
     /* ── Data CRUD ── */
@@ -270,10 +271,14 @@ export function SettingsProvider({ children }) {
     const deleteCertification = useCallback((id) => setData((d) => ({ ...d, certifications: d.certifications.filter((c) => c.id !== id) })), [])
 
     /* ── Password ── */
+    // hasPassword: returns true if a password hash exists in localStorage
     const hasPassword = () => !!localStorage.getItem(PASS_KEY)
-    const checkPassword = (pw) => simpleHash(pw) === localStorage.getItem(PASS_KEY)
-    const setPassword = (pw) => localStorage.setItem(PASS_KEY, simpleHash(pw))
-    const clearPassword = () => localStorage.removeItem(PASS_KEY)
+    // checkPassword: returns true only if the provided password matches the stored hash
+    const checkPassword = (pw) => !!pw && simpleHash(pw) === localStorage.getItem(PASS_KEY)
+    // setPassword: stores a new password hash — only callable after verifying current password in TabSecurity
+    const setPassword = (pw) => { if (pw) localStorage.setItem(PASS_KEY, simpleHash(pw)) }
+    // removePassword: removes password protection — only callable from TabSecurity after verifying current password
+    const removePassword = () => localStorage.removeItem(PASS_KEY)
 
     return (
         <SettingsContext.Provider value={{
@@ -282,7 +287,7 @@ export function SettingsProvider({ children }) {
             addProject, updateProject, deleteProject,
             addExperience, updateExperience, deleteExperience,
             addCertification, updateCertification, deleteCertification,
-            hasPassword, checkPassword, setPassword, clearPassword,
+            hasPassword, checkPassword, setPassword, removePassword,
         }}>
             {children}
         </SettingsContext.Provider>

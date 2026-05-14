@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer.jsx'
 import SettingsPanel from './components/SettingsPanel.jsx'
+import ScrollToTop from './components/ScrollToTop.jsx'
 import Home from './pages/Home.jsx'
 
 const Contact = lazy(() => import('./pages/Contact.jsx'))
@@ -24,6 +25,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-[#080b14] text-white">
+      <ScrollToTop />
       <Navbar onOpenSettings={() => setSettingsOpen(true)} />
       <Suspense fallback={<PageLoader />}>
         <Routes>

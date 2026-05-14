@@ -327,9 +327,13 @@ export default function SettingsPanel({ open, onClose }) {
 
                                 {/* Footer */}
                                 <div className="px-5 py-4 border-t border-white/8 flex gap-3 flex-shrink-0">
-                                    <button onClick={() => { if (window.confirm('Reset all settings to defaults?')) resetAll() }}
+                                    <button onClick={() => {
+                                        if (window.confirm('Reset all content to defaults? Your password will NOT be changed.')) {
+                                            resetAll()
+                                        }
+                                    }}
                                         className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white/50 text-sm hover:bg-white/10 transition-colors">
-                                        <FaUndo className="text-xs" /> Reset
+                                        <FaUndo className="text-xs" /> Reset Content
                                     </button>
                                     <button onClick={handleClose}
                                         className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl bg-[var(--primary)] text-black font-bold text-sm hover:opacity-90 transition-opacity">

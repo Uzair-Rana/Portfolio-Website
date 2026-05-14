@@ -22,7 +22,8 @@ function ContactForm() {
       await submitContact(form)
       setStatus('success')
       setForm({ name: '', email: '', subject: '', message: '' })
-    } catch {
+    } catch (err) {
+      console.error('Contact form error:', err)
       setStatus('error')
     }
   }
