@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { m as M, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { FaBars, FaTimes, FaGithub, FaCog } from 'react-icons/fa'
 import ThemeToggle from './ThemeToggle.jsx'
 import { useSettings } from '../context/SettingsContext.jsx'
@@ -8,10 +8,8 @@ import { useSettings } from '../context/SettingsContext.jsx'
 const navLinks = [
   { name: 'About', href: '#about' },
   { name: 'Skills', href: '#skills' },
-  { name: 'Experience', href: '#experience' },
   { name: 'Projects', href: '#projects' },
-  { name: 'Education', href: '#education' },
-  { name: 'Certifications', href: '#certifications' },
+  { name: 'Experience', href: '#experience' },
 ]
 
 export default function Navbar({ onOpenSettings }) {
@@ -33,155 +31,105 @@ export default function Navbar({ onOpenSettings }) {
 
   return (
     <>
-      <M.header
+      <motion.header
         initial={{ y: -64, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5, ease: 'easeOut' }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
-            ? 'bg-[#080b14]/90 backdrop-blur-xl border-b border-white/5 shadow-xl shadow-black/20'
-            : 'bg-transparent'
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
+            ? 'py-4 bg-[#020617]/80 backdrop-blur-2xl border-b border-white/5'
+            : 'py-6 bg-transparent'
           }`}
       >
-        <nav className="container-padding mx-auto max-w-6xl flex items-center justify-between h-16">
-
-          {/* ── Logo ── */}
-          <Link to="/" className="flex items-center gap-2.5 group">
-            <div className="relative w-9 h-9 flex-shrink-0">
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[var(--primary)] to-[var(--accent)] opacity-80" />
+        <nav className="container-padding mx-auto max-w-7xl flex items-center justify-between">
+          {/* Logo */}
+          <Link to="/" className="flex items-center gap-4 group">
+            <div className="relative w-10 h-10 flex-shrink-0">
+              <div className="absolute inset-0 rounded-full bg-white opacity-10 group-hover:scale-110 transition-transform" />
               <img
                 src={settings.photoUrl}
                 alt={displayName}
-                className="relative w-9 h-9 rounded-full object-cover object-center border-2 border-[var(--primary)]/40"
+                className="relative w-10 h-10 rounded-full object-cover grayscale group-hover:grayscale-0 transition-all"
                 onError={(e) => { e.currentTarget.style.display = 'none' }}
               />
             </div>
-            <span className="font-bold text-lg text-white group-hover:text-[var(--primary)] transition-colors duration-200">
+            <span className="font-display font-black text-xl text-white tracking-tight uppercase">
               {displayName}
             </span>
           </Link>
 
-          {/* ── Desktop nav links ── */}
-          <div className="hidden lg:flex items-center gap-0.5">
-            {navLinks.map((link, i) =>
+          {/* Desktop Nav */}
+          <div className="hidden lg:flex items-center gap-2 glass-morphism p-1 rounded-full border-white/5">
+            {navLinks.map((link) => (
               isHome ? (
-                <M.a
+                <a
                   key={link.name}
                   href={link.href}
-                  initial={{ opacity: 0, y: -8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.35, delay: 0.1 + i * 0.06 }}
-                  className="px-3 py-1.5 rounded-lg text-sm text-white/55 hover:text-white hover:bg-white/5 transition-all duration-200"
+                  className="px-5 py-2 rounded-full text-xs font-black uppercase tracking-widest text-gray-400 hover:text-white hover:bg-white/5 transition-all"
                 >
                   {link.name}
-                </M.a>
+                </a>
               ) : (
-                <M.div key={link.name} initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35, delay: 0.1 + i * 0.06 }}>
-                  <Link to={`/${link.href}`} className="px-3 py-1.5 rounded-lg text-sm text-white/55 hover:text-white hover:bg-white/5 transition-all duration-200 block">
-                    {link.name}
-                  </Link>
-                </M.div>
+                <Link 
+                  key={link.name} 
+                  to={`/${link.href}`} 
+                  className="px-5 py-2 rounded-full text-xs font-black uppercase tracking-widest text-gray-400 hover:text-white hover:bg-white/5 transition-all"
+                >
+                  {link.name}
+                </Link>
               )
-            )}
+            ))}
           </div>
 
-          {/* ── Desktop right actions ── */}
-          <M.div
-            initial={{ opacity: 0, x: 16 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.45, delay: 0.3 }}
-            className="hidden lg:flex items-center gap-2"
-          >
-            <ThemeToggle />
+          {/* Desktop Actions */}
+          <div className="hidden lg:flex items-center gap-4">
             <a href={settings.github} target="_blank" rel="noreferrer"
-              className="w-9 h-9 rounded-lg border border-white/10 flex items-center justify-center text-white/55 hover:text-white hover:border-white/30 transition-all"
-              aria-label="GitHub">
-              <FaGithub />
+              className="p-3 rounded-full glass-morphism border-white/5 text-gray-400 hover:text-white transition-all"
+            >
+              <FaGithub className="text-lg" />
             </a>
-            {/* Settings gear */}
             <button
               onClick={onOpenSettings}
-              className="w-9 h-9 rounded-lg border border-white/10 flex items-center justify-center text-white/55 hover:text-white hover:border-[var(--primary)]/50 hover:bg-[var(--primary)]/10 transition-all"
-              aria-label="Open settings"
-              title="Settings"
+              className="px-6 py-3 rounded-full bg-white text-black text-xs font-black uppercase tracking-widest hover:scale-105 active:scale-95 transition-all"
             >
-              <FaCog className="text-sm" />
-            </button>
-            <Link to="/contact"
-              className="px-4 py-2 rounded-lg bg-[var(--primary)] text-black text-sm font-bold hover:opacity-90 transition-opacity shadow-lg shadow-[var(--primary)]/20">
-              Hire Me
-            </Link>
-          </M.div>
-
-          {/* ── Mobile: settings + hamburger ── */}
-          <div className="lg:hidden flex items-center gap-2">
-            <button
-              onClick={onOpenSettings}
-              className="w-9 h-9 rounded-lg border border-white/10 flex items-center justify-center text-white/55 hover:text-white transition-all"
-              aria-label="Open settings"
-            >
-              <FaCog className="text-sm" />
-            </button>
-            <button
-              onClick={() => setMobileOpen(!mobileOpen)}
-              className="w-9 h-9 rounded-lg border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-white/5 transition-all"
-              aria-label="Toggle menu"
-            >
-              <AnimatePresence mode="wait" initial={false}>
-                {mobileOpen ? (
-                  <M.span key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.15 }}>
-                    <FaTimes />
-                  </M.span>
-                ) : (
-                  <M.span key="open" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.15 }}>
-                    <FaBars />
-                  </M.span>
-                )}
-              </AnimatePresence>
+              Settings
             </button>
           </div>
-        </nav>
-      </M.header>
 
-      {/* ── Mobile menu ── */}
+          {/* Mobile Toggle */}
+          <button
+            className="lg:hidden p-2 text-white"
+            onClick={() => setMobileOpen(!mobileOpen)}
+          >
+            {mobileOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+          </button>
+        </nav>
+      </motion.header>
+
+      {/* Mobile Menu */}
       <AnimatePresence>
         {mobileOpen && (
-          <M.div
-            initial={{ opacity: 0, y: -8 }}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2 }}
-            className="fixed top-16 left-0 right-0 z-40 bg-[#080b14]/96 backdrop-blur-xl border-b border-white/10 shadow-2xl lg:hidden"
+            exit={{ opacity: 0, y: -20 }}
+            className="fixed inset-0 z-40 bg-[#020617] lg:hidden flex flex-col items-center justify-center p-8 gap-8"
           >
-            <div className="container-padding mx-auto max-w-6xl py-4 flex flex-col gap-0.5">
-              {navLinks.map((link, i) =>
-                isHome ? (
-                  <M.a key={link.name} href={link.href}
-                    initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.2, delay: i * 0.04 }}
-                    onClick={() => setMobileOpen(false)}
-                    className="px-4 py-3 rounded-xl text-white/65 hover:text-white hover:bg-white/5 transition-all text-base">
-                    {link.name}
-                  </M.a>
-                ) : (
-                  <M.div key={link.name} initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.2, delay: i * 0.04 }}>
-                    <Link to={`/${link.href}`} className="px-4 py-3 rounded-xl text-white/65 hover:text-white hover:bg-white/5 transition-all text-base block">
-                      {link.name}
-                    </Link>
-                  </M.div>
-                )
-              )}
-              <div className="pt-3 mt-2 border-t border-white/10 flex gap-3">
-                <a href={settings.github} target="_blank" rel="noreferrer"
-                  className="flex-1 py-2.5 rounded-xl border border-white/10 text-white/60 text-sm text-center hover:bg-white/5 transition-all flex items-center justify-center gap-2">
-                  <FaGithub /> GitHub
-                </a>
-                <Link to="/contact"
-                  className="flex-1 py-2.5 rounded-xl bg-[var(--primary)] text-black text-sm font-bold text-center hover:opacity-90 transition-opacity">
-                  Hire Me
-                </Link>
-              </div>
-            </div>
-          </M.div>
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="font-display text-4xl font-black text-white uppercase tracking-tighter"
+                onClick={() => setMobileOpen(false)}
+              >
+                {link.name}
+              </a>
+            ))}
+            <button
+              onClick={() => { onOpenSettings(); setMobileOpen(false); }}
+              className="mt-8 px-10 py-5 rounded-full bg-white text-black font-black uppercase tracking-widest"
+            >
+              Settings
+            </button>
+          </motion.div>
         )}
       </AnimatePresence>
     </>

@@ -1,4 +1,4 @@
-import { m as M, useMotionValue, useTransform, useSpring } from 'framer-motion'
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { FaArrowRight, FaBrain, FaMicrophone, FaUserTie, FaCode, FaRocket, FaStar } from 'react-icons/fa'
 import { useSettings } from '../context/SettingsContext.jsx'
@@ -8,34 +8,51 @@ const iconComponents = {
   code: FaCode, rocket: FaRocket, star: FaStar,
 }
 
-/* Mouse-tracking 3D card */
-function Card3D({ children, className, delay = 0 }) {
+function Card3D({ children, delay = 0 }) {
   const x = useMotionValue(0)
   const y = useMotionValue(0)
 
-  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [8, -8]), { stiffness: 300, damping: 30 })
-  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-8, 8]), { stiffness: 300, damping: 30 })
+  const mouseXSpring = useSpring(x)
+  const mouseYSpring = useSpring(y)
 
-  const handleMouse = (e) => {
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["17.5deg", "-17.5deg"])
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-17.5deg", "17.5deg"])
+
+  const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect()
-    x.set((e.clientX - rect.left) / rect.width - 0.5)
-    y.set((e.clientY - rect.top) / rect.height - 0.5)
+    const width = rect.width
+    const height = rect.height
+    const mouseX = e.clientX - rect.left
+    const mouseY = e.clientY - rect.top
+    const xPct = mouseX / width - 0.5
+    const yPct = mouseY / height - 0.5
+    x.set(xPct)
+    y.set(yPct)
   }
-  const handleLeave = () => { x.set(0); y.set(0) }
+
+  const handleMouseLeave = () => {
+    x.set(0)
+    y.set(0)
+  }
 
   return (
-    <M.div
-      initial={{ opacity: 0, y: 50, rotateX: -20, scale: 0.92 }}
-      whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] }}
-      style={{ rotateX, rotateY, transformStyle: 'preserve-3d', perspective: '800px' }}
-      onMouseMove={handleMouse}
-      onMouseLeave={handleLeave}
-      className={className}
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{ rotateY, rotateX, transformStyle: "preserve-3d" }}
+      className="relative h-[400px] md:h-[450px] w-full rounded-[2rem] md:rounded-[2.5rem] bg-gradient-to-br from-indigo-500/10 to-purple-500/10 p-[1px]"
     >
-      {children}
-    </M.div>
+      <div
+        style={{ transform: "translateZ(75px)", transformStyle: "preserve-3d" }}
+        className="absolute inset-3 md:inset-4 grid place-content-center rounded-[1.5rem] md:rounded-[2rem] bg-slate-900/90 shadow-2xl border border-white/10"
+      >
+        {children}
+      </div>
+    </motion.div>
   )
 }
 
@@ -44,95 +61,84 @@ function Projects() {
   const projects = data.projects
 
   return (
-    <section id="projects" className="container-padding mx-auto max-w-6xl py-20">
-      <M.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-80px' }}
-        transition={{ duration: 0.5 }}
-        className="mb-3"
-      >
-        <span className="text-sm font-semibold text-[var(--primary)] uppercase tracking-widest">
-          What I've Built
-        </span>
-      </M.div>
+    <section id="projects" className="section-padding relative overflow-hidden">
+      {/* Background Glows */}
+      <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-indigo-600 vibrant-glow opacity-10" />
+      <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-pink-600 vibrant-glow opacity-10" />
 
-      <M.h2
-        initial={{ opacity: 0, y: 30, rotateX: -15 }}
-        whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-        viewport={{ once: true, margin: '-80px' }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className="text-4xl sm:text-5xl font-extrabold heading-gradient mb-4"
-        style={{ perspective: '600px' }}
-      >
-        Key Projects
-      </M.h2>
+      <div className="container-custom flex flex-col items-center text-center">
+        {/* Header - Symmetrical */}
+        <div className="max-w-4xl mb-12 md:mb-24 space-y-4 md:space-y-6">
+          <motion.span 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            className="text-[10px] md:text-xs font-black text-indigo-400 uppercase tracking-[0.4em]"
+          >
+            Creative Portfolio
+          </motion.span>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="font-display text-4xl sm:text-6xl lg:text-8xl font-black text-white tracking-tighter leading-none"
+          >
+            Selected <span className="text-gradient-vibrant">Works</span>
+          </motion.h2>
+          <div className="w-20 md:w-32 h-[2px] bg-gradient-to-r from-indigo-500 to-pink-500 rounded-full mx-auto" />
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            className="text-lg md:text-2xl font-serif italic text-gray-500 max-w-2xl mx-auto leading-relaxed pt-4"
+          >
+            A curated selection of my most impactful projects, built with a focus on precision and performance.
+          </motion.p>
+        </div>
 
-      <M.p
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-80px' }}
-        transition={{ duration: 0.5, delay: 0.1 }}
-        className="text-white/50 text-base mb-12 max-w-xl"
-      >
-        Production-grade applications I've contributed to — live platforms serving real users.
-        Click any project to see the full details.
-      </M.p>
-
-      {projects.length === 0 && (
-        <p className="text-white/30 text-center py-12">No projects yet. Add some in Settings.</p>
-      )}
-
-      <div className="grid md:grid-cols-3 gap-6" style={{ perspective: '1000px' }}>
-        {projects.map((p, idx) => {
-          const Icon = iconComponents[p.iconName] ?? FaCode
-          return (
-            <Card3D key={p.id || p.slug} delay={idx * 0.12}>
-              <Link
-                to={`/projects/${p.slug}`}
-                className={`group rounded-2xl border ${p.border} bg-gradient-to-br ${p.gradient} p-6 flex flex-col gap-5 block h-full`}
-                style={{ transformStyle: 'preserve-3d' }}
-              >
-                {/* Icon floats forward in Z */}
-                <div
-                  className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center"
-                  style={{ transform: 'translateZ(20px)' }}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 w-full max-w-7xl">
+          {projects.map((p, idx) => {
+            const Icon = iconComponents[p.iconName] ?? FaCode
+            return (
+              <Card3D key={p.id || p.slug} delay={idx * 0.1}>
+                <Link
+                  to={`/projects/${p.slug}`}
+                  className="flex flex-col items-center text-center p-6 md:p-8 space-y-4 md:space-y-6 w-full h-full justify-between"
                 >
-                  <Icon className={`text-3xl ${p.iconColor}`} />
-                </div>
+                  <div 
+                    style={{ transform: "translateZ(50px)" }}
+                    className="p-4 md:p-6 rounded-2xl md:rounded-3xl bg-white/5 border border-white/10 text-white group-hover:scale-110 transition-transform"
+                  >
+                    <Icon className="text-3xl md:text-4xl text-indigo-400" />
+                  </div>
 
-                <div style={{ transform: 'translateZ(12px)' }}>
-                  <h3 className="text-xl font-bold text-white group-hover:text-[var(--primary)] transition-colors">
-                    {p.title}
-                  </h3>
-                  <p className={`text-sm font-semibold mt-1 ${p.iconColor}`}>{p.role}</p>
-                </div>
+                  <div style={{ transform: "translateZ(30px)" }} className="space-y-2 md:space-y-4">
+                    <h3 className="text-xl md:text-3xl font-black text-white tracking-tight uppercase">
+                      {p.title}
+                    </h3>
+                    <p className="text-gray-500 text-sm md:text-base font-serif italic leading-relaxed line-clamp-3">
+                      {p.description || p.tagline}
+                    </p>
+                  </div>
 
-                <p className="text-white/55 text-sm leading-relaxed flex-1" style={{ transform: 'translateZ(8px)' }}>
-                  {p.tagline}
-                </p>
+                  <div 
+                    style={{ transform: "translateZ(20px)" }}
+                    className="flex items-center gap-2 md:gap-3 text-[10px] md:text-xs font-black text-indigo-400 uppercase tracking-widest group"
+                  >
+                    View Project
+                    <FaArrowRight className="group-hover:translate-x-2 transition-transform" />
+                  </div>
+                </Link>
+              </Card3D>
+            )
+          })}
+        </div>
 
-                <div className="flex flex-wrap gap-1.5" style={{ transform: 'translateZ(6px)' }}>
-                  {p.tech.slice(0, 4).map((t) => (
-                    <span key={t} className="px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-white/50 text-xs">{t}</span>
-                  ))}
-                  {p.tech.length > 4 && (
-                    <span className="px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-white/40 text-xs">+{p.tech.length - 4} more</span>
-                  )}
-                </div>
-
-                <div className="flex items-center gap-2 text-sm font-semibold text-white/40 group-hover:text-[var(--primary)] transition-colors pt-1 border-t border-white/10"
-                  style={{ transform: 'translateZ(10px)' }}>
-                  <span>View Details</span>
-                  <FaArrowRight className="text-xs group-hover:translate-x-1 transition-transform duration-200" />
-                </div>
-              </Link>
-            </Card3D>
-          )
-        })}
+        {projects.length === 0 && (
+          <div className="text-center py-12 md:py-20 glass-card-vibrant rounded-3xl w-full max-w-3xl">
+            <p className="text-gray-500 font-black uppercase tracking-widest text-sm">Workspace is empty</p>
+          </div>
+        )}
       </div>
     </section>
   )
 }
 
-export default Projects
+export default Projects;

@@ -24,7 +24,7 @@ function App() {
   const [settingsOpen, setSettingsOpen] = useState(false)
 
   return (
-    <div className="min-h-screen bg-[#080b14] text-white">
+    <div className="min-h-screen bg-[#020617] text-white">
       <ScrollToTop />
       <Navbar onOpenSettings={() => setSettingsOpen(true)} />
       <Suspense fallback={<PageLoader />}>

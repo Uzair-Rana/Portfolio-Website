@@ -1,83 +1,85 @@
-import { m as M } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { FaGraduationCap, FaStar, FaArrowRight } from 'react-icons/fa'
+import { FaGraduationCap, FaStar, FaArrowRight, FaCalendarAlt } from 'react-icons/fa'
 import { educationList } from '../data/education.js'
 
 function Education() {
   return (
-    <section id="education" className="container-padding mx-auto max-w-6xl py-20" style={{ perspective: '1200px' }}>
-      <M.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-80px' }}
-        transition={{ duration: 0.5 }}
-        className="mb-3"
-      >
-        <span className="text-sm font-semibold text-[var(--primary)] uppercase tracking-widest">
-          Academic Background
-        </span>
-      </M.div>
-
-      <M.h2
-        initial={{ opacity: 0, y: 30, rotateX: -15 }}
-        whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-        viewport={{ once: true, margin: '-80px' }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className="text-4xl sm:text-5xl font-extrabold heading-gradient mb-12"
-      >
-        Education
-      </M.h2>
-
-      <div className="space-y-5">
-        {educationList.map((edu, idx) => (
-          <M.div
-            key={edu.slug}
-            initial={{ opacity: 0, x: 80, rotateY: 15 }}
-            whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.65, delay: idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
-            whileHover={{ rotateY: -2, x: -4, scale: 1.01, transition: { duration: 0.2 } }}
-            style={{ transformStyle: 'preserve-3d' }}
+    <section id="education" className="section-padding relative overflow-hidden">
+      <div className="container-custom flex flex-col items-center">
+        {/* Header - Centered */}
+        <div className="max-w-4xl mb-12 md:mb-24 text-center space-y-4 md:space-y-6">
+          <motion.span 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            className="text-[10px] md:text-xs font-black text-indigo-400 uppercase tracking-[0.4em]"
           >
-            <Link
-              to={`/education/${edu.slug}`}
-              className="group glass-card rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center gap-6 block"
+            Learning
+          </motion.span>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="font-display text-4xl sm:text-6xl lg:text-8xl font-black text-white tracking-tighter uppercase leading-none"
+          >
+            Education
+          </motion.h2>
+          <div className="w-20 md:w-32 h-[2px] bg-gradient-to-r from-indigo-500 to-pink-500 rounded-full mx-auto" />
+        </div>
+
+        <div className="space-y-4 md:space-y-8 w-full max-w-5xl">
+          {educationList.map((edu, idx) => (
+            <motion.div
+              key={edu.slug}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
             >
-              <div
-                className="w-14 h-14 rounded-2xl bg-[var(--primary)]/10 border border-[var(--primary)]/20 flex items-center justify-center flex-shrink-0"
-                style={{ transform: 'translateZ(20px)' }}
+              <Link
+                to={`/education/${edu.slug}`}
+                className="group relative block glass-card-vibrant p-6 md:p-10 border-white/5 hover:border-indigo-500/30 overflow-hidden rounded-3xl"
               >
-                <FaGraduationCap className="text-2xl text-[var(--primary)]" />
-              </div>
+                <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6 md:gap-8">
+                  <div className="flex flex-col sm:flex-row items-start gap-4 md:gap-8">
+                    <div className="p-4 rounded-2xl bg-white/5 border border-white/10 text-indigo-400 group-hover:scale-110 transition-transform shadow-xl">
+                      <FaGraduationCap className="text-2xl md:text-3xl" />
+                    </div>
+                    <div className="space-y-2 md:space-y-3">
+                      <h3 className="text-xl md:text-3xl font-black text-white group-hover:text-indigo-400 transition-colors uppercase tracking-tight">
+                        {edu.degree}
+                      </h3>
+                      <div className="flex flex-wrap gap-x-4 gap-y-2 text-xs md:text-sm font-serif italic text-gray-500">
+                        <span className="text-gray-300 font-bold uppercase tracking-widest not-italic text-[10px] md:text-xs">
+                          {edu.institution}
+                        </span>
+                        <span className="flex items-center gap-2">
+                          <FaCalendarAlt className="text-[10px]" />
+                          {edu.period}
+                        </span>
+                      </div>
+                      <div className="pt-2 md:pt-3">
+                        <span className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[9px] md:text-[10px] font-black uppercase tracking-widest shadow-lg">
+                          <FaStar className="text-[8px] md:text-[10px]" />
+                          {edu.cgpa} / {edu.cgpaMax} CGPA
+                        </span>
+                      </div>
+                    </div>
+                  </div>
 
-              <div className="flex-1 min-w-0" style={{ transform: 'translateZ(10px)' }}>
-                <h3 className="text-xl font-bold text-white group-hover:text-[var(--primary)] transition-colors mb-1">
-                  {edu.degree}
-                </h3>
-                <p className="text-[var(--primary)] font-semibold text-sm">{edu.institution}</p>
-                <p className="text-white/40 text-xs mt-0.5">{edu.period}</p>
-                <div className="mt-3 inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-[var(--highlight)]/10 border border-[var(--highlight)]/20">
-                  <FaStar className="text-[var(--highlight)] text-xs" />
-                  <span className="text-[var(--highlight)] font-bold text-sm">{edu.cgpa}</span>
-                  <span className="text-white/40 text-xs">/ {edu.cgpaMax} CGPA</span>
+                  <div className="flex items-center gap-3 text-[10px] md:text-xs font-black text-gray-600 group-hover:text-white transition-colors uppercase tracking-[0.2em]">
+                    VIEW DETAILS
+                    <FaArrowRight className="group-hover:translate-x-2 transition-transform" />
+                  </div>
                 </div>
-              </div>
 
-              <div className="flex sm:flex-col items-center sm:items-end gap-3 flex-shrink-0" style={{ transform: 'translateZ(14px)' }}>
-                <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/60 text-sm whitespace-nowrap">
-                  {edu.period}
-                </span>
-                <div className="flex items-center gap-1.5 text-sm font-semibold text-white/30 group-hover:text-[var(--primary)] transition-colors">
-                  <span className="hidden sm:inline text-xs">Details</span>
-                  <FaArrowRight className="text-xs group-hover:translate-x-1 transition-transform duration-200" />
-                </div>
-              </div>
-            </Link>
-          </M.div>
-        ))}
+                <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-pink-500 opacity-0 group-hover:opacity-[0.03] transition-opacity duration-500" />
+              </Link>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   )
 }
 
-export default Education
+export default Education;

@@ -7,22 +7,23 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Plus Jakarta Sans', 'Space Grotesk', 'system-ui', 'sans-serif'],
-        display: ['Space Grotesk', 'Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        display: ['Bricolage Grotesque', 'sans-serif'],
+        serif: ['Instrument Serif', 'serif'],
       },
       colors: {
-        primary: '#38bdf8',         // existing
-        accent: '#a78bfa',          // existing
-        secondary: '#f472b6',       // new vibrant pink
-        highlight: '#facc15',       // new yellow accent
-        backgroundLight: '#f5f5f5', // subtle light background
-        backgroundDark: '#0f172a',  // deep dark background
+        primary: '#6366f1',         // Indigo
+        accent: '#ec4899',          // Pink
+        secondary: '#8b5cf6',       // Violet
+        highlight: '#10b981',       // Emerald
+        backgroundLight: '#f8fafc',
+        backgroundDark: '#020617',  // Slate 950
       },
       backgroundImage: {
-        grid: "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.06) 1px, transparent 0)",
-        heroGradient: "linear-gradient(135deg, #38bdf8 0%, #a78bfa 100%)",
-        sectionGradient: "linear-gradient(135deg, #38bdf8 0%, #f472b6 100%)",
-        glass: "rgba(255, 255, 255, 0.1)",
+        grid: "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0)",
+        heroGradient: "linear-gradient(135deg, #6366f1 0%, #ec4899 100%)",
+        sectionGradient: "linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)",
+        glass: "linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05))",
       },
       boxShadow: {
         soft: '0 4px 30px rgba(0, 0, 0, 0.1)',
