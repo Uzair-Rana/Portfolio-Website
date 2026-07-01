@@ -8,137 +8,150 @@ const iconComponents = {
   code: FaCode, rocket: FaRocket, star: FaStar,
 }
 
-function Card3D({ children, delay = 0 }) {
+const projectImages = {
+  'search-atlas': '/images/project-searchatlas.jpg',
+  'aethermuse': '/images/project-aethermuse.jpg',
+  'enginehire': '/images/project-enginehire.jpg',
+}
+const fallbackImages = [
+  '/images/bg-tech-1.jpg',
+  '/images/bg-code-screen.jpg',
+  '/images/programming-1.jpg',
+  '/images/coding-alt.jpg',
+  '/images/workspace-1.jpg',
+]
+
+function ProjectCard({ project, idx }) {
+  const Icon = iconComponents[project.iconName] ?? FaCode
+  const bgImg = projectImages[project.slug] || fallbackImages[idx % fallbackImages.length]
+
   const x = useMotionValue(0)
   const y = useMotionValue(0)
+  const sx = useSpring(x, { stiffness: 200, damping: 20 })
+  const sy = useSpring(y, { stiffness: 200, damping: 20 })
+  const rotateX = useTransform(sy, [-0.5, 0.5], ['10deg', '-10deg'])
+  const rotateY = useTransform(sx, [-0.5, 0.5], ['-10deg', '10deg'])
 
-  const mouseXSpring = useSpring(x)
-  const mouseYSpring = useSpring(y)
-
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["17.5deg", "-17.5deg"])
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-17.5deg", "17.5deg"])
-
-  const handleMouseMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect()
-    const width = rect.width
-    const height = rect.height
-    const mouseX = e.clientX - rect.left
-    const mouseY = e.clientY - rect.top
-    const xPct = mouseX / width - 0.5
-    const yPct = mouseY / height - 0.5
-    x.set(xPct)
-    y.set(yPct)
+  const onMove = (e) => {
+    const r = e.currentTarget.getBoundingClientRect()
+    x.set((e.clientX - r.left) / r.width - 0.5)
+    y.set((e.clientY - r.top) / r.height - 0.5)
   }
-
-  const handleMouseLeave = () => {
-    x.set(0)
-    y.set(0)
-  }
+  const onLeave = () => { x.set(0); y.set(0) }
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ delay }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{ rotateY, rotateX, transformStyle: "preserve-3d" }}
-      className="relative h-[400px] md:h-[450px] w-full rounded-[2rem] md:rounded-[2.5rem] bg-gradient-to-br from-indigo-500/10 to-purple-500/10 p-[1px]"
+      transition={{ duration: 0.55, delay: idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
+      style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
+      className="rounded-2xl overflow-hidden border border-white/10 bg-[#0a0f1e]"
     >
-      <div
-        style={{ transform: "translateZ(75px)", transformStyle: "preserve-3d" }}
-        className="absolute inset-3 md:inset-4 grid place-content-center rounded-[1.5rem] md:rounded-[2rem] bg-slate-900/90 shadow-2xl border border-white/10"
-      >
-        {children}
-      </div>
+      <Link to={`/projects/${project.slug}`} className="block group">
+
+        {/* ── Image top half — taller for real project screenshots ── */}
+        <div className="relative h-56 overflow-hidden">
+          <img src={bgImg} alt={project.title}
+                className={`w-full h-full object-cover ${project.slug === 'aethermuse' ? 'object-center' : 'object-top'} group-hover:scale-110 transition-transform duration-700`}
+                loading="lazy" />
+          {/* gradient fade to card body */}
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0a0f1e]" />
+          {/* Role badge top-left */}
+          <span className="absolute top-3 left-3 px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest text-white"
+            style={{
+              background: `${project.accentColor || '#6366f1'}55`,
+              border: `1px solid ${project.accentColor || '#6366f1'}60`,
+            }}>
+            {project.role}
+          </span>
+          {/* Icon top-right */}
+          <div className="absolute top-3 right-3 w-9 h-9 rounded-xl flex items-center justify-center bg-black/40 border border-white/10"
+            style={{ color: project.accentColor || '#6366f1' }}>
+            <Icon className="text-lg" />
+          </div>
+        </div>
+
+        {/* ── Content bottom ── */}
+        <div className="p-5 space-y-3" style={{ transform: 'translateZ(20px)' }}>
+          <h3 className="text-lg font-black text-white uppercase tracking-tight group-hover:text-indigo-400 transition-colors">
+            {project.title}
+          </h3>
+          <p className="text-gray-500 text-sm font-serif italic leading-relaxed line-clamp-2">
+            {project.tagline}
+          </p>
+
+          {/* Tech tags */}
+          <div className="flex flex-wrap gap-1.5 pt-1">
+            {(project.tech || []).slice(0, 4).map((t) => (
+              <span key={t} className="px-2 py-0.5 rounded-md bg-white/5 border border-white/8 text-gray-600 text-[9px] font-bold uppercase tracking-wide">
+                {t}
+              </span>
+            ))}
+          </div>
+
+          {/* View link */}
+          <div className="flex items-center gap-1.5 text-[10px] font-black text-indigo-400 uppercase tracking-widest pt-1 border-t border-white/5">
+            View Project
+            <FaArrowRight className="text-xs group-hover:translate-x-1 transition-transform" />
+          </div>
+        </div>
+      </Link>
     </motion.div>
   )
 }
 
-function Projects() {
+export default function Projects() {
   const { data } = useSettings()
   const projects = data.projects
 
   return (
     <section id="projects" className="section-padding relative overflow-hidden">
-      {/* Background Glows */}
-      <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-indigo-600 vibrant-glow opacity-10" />
-      <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-pink-600 vibrant-glow opacity-10" />
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <img src="/images/bg-code-screen.jpg" alt="" aria-hidden="true"
+          className="absolute top-0 right-0 w-1/2 h-1/2 object-cover"
+          style={{ opacity: 0.35 }} loading="lazy" />
+        <img src="/images/coding-alt.jpg" alt="" aria-hidden="true"
+          className="absolute bottom-0 left-0 w-1/2 h-1/2 object-cover"
+          style={{ opacity: 0.35 }} loading="lazy" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#020617]/60 via-[#020617]/50 to-[#020617]/60" />
+      </div>
+      <div className="absolute top-1/3 left-0 w-80 h-80 bg-indigo-600 vibrant-glow opacity-8" />
+      <div className="absolute bottom-0 right-0 w-64 h-64 bg-pink-600 vibrant-glow opacity-8" />
 
-      <div className="container-custom flex flex-col items-center text-center">
-        {/* Header - Symmetrical */}
-        <div className="max-w-4xl mb-12 md:mb-24 space-y-4 md:space-y-6">
-          <motion.span 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            className="text-[10px] md:text-xs font-black text-indigo-400 uppercase tracking-[0.4em]"
+      <div className="container-custom">
+        {/* Header */}
+        <div className="max-w-3xl mb-14 space-y-4">
+          <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}
+            className="text-sm font-black text-pink-400 uppercase tracking-[0.4em]"
           >
             Creative Portfolio
           </motion.span>
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="font-display text-4xl sm:text-6xl lg:text-8xl font-black text-white tracking-tighter leading-none"
+          <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+            className="font-display text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tighter leading-none"
           >
             Selected <span className="text-gradient-vibrant">Works</span>
           </motion.h2>
-          <div className="w-20 md:w-32 h-[2px] bg-gradient-to-r from-indigo-500 to-pink-500 rounded-full mx-auto" />
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            className="text-lg md:text-2xl font-serif italic text-gray-500 max-w-2xl mx-auto leading-relaxed pt-4"
+          <div className="w-32 h-[2px] bg-gradient-to-r from-indigo-500 to-pink-500 rounded-full" />
+          <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}
+            className="text-lg font-serif italic text-gray-300 max-w-xl leading-relaxed"
           >
-            A curated selection of my most impactful projects, built with a focus on precision and performance.
+            Production-grade platforms I've contributed to — live systems serving real users.
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 w-full max-w-7xl">
-          {projects.map((p, idx) => {
-            const Icon = iconComponents[p.iconName] ?? FaCode
-            return (
-              <Card3D key={p.id || p.slug} delay={idx * 0.1}>
-                <Link
-                  to={`/projects/${p.slug}`}
-                  className="flex flex-col items-center text-center p-6 md:p-8 space-y-4 md:space-y-6 w-full h-full justify-between"
-                >
-                  <div 
-                    style={{ transform: "translateZ(50px)" }}
-                    className="p-4 md:p-6 rounded-2xl md:rounded-3xl bg-white/5 border border-white/10 text-white group-hover:scale-110 transition-transform"
-                  >
-                    <Icon className="text-3xl md:text-4xl text-indigo-400" />
-                  </div>
-
-                  <div style={{ transform: "translateZ(30px)" }} className="space-y-2 md:space-y-4">
-                    <h3 className="text-xl md:text-3xl font-black text-white tracking-tight uppercase">
-                      {p.title}
-                    </h3>
-                    <p className="text-gray-500 text-sm md:text-base font-serif italic leading-relaxed line-clamp-3">
-                      {p.description || p.tagline}
-                    </p>
-                  </div>
-
-                  <div 
-                    style={{ transform: "translateZ(20px)" }}
-                    className="flex items-center gap-2 md:gap-3 text-[10px] md:text-xs font-black text-indigo-400 uppercase tracking-widest group"
-                  >
-                    View Project
-                    <FaArrowRight className="group-hover:translate-x-2 transition-transform" />
-                  </div>
-                </Link>
-              </Card3D>
-            )
-          })}
-        </div>
-
         {projects.length === 0 && (
-          <div className="text-center py-12 md:py-20 glass-card-vibrant rounded-3xl w-full max-w-3xl">
-            <p className="text-gray-500 font-black uppercase tracking-widest text-sm">Workspace is empty</p>
-          </div>
+          <p className="text-gray-600 font-serif italic text-center py-16">No projects yet. Add some in Settings.</p>
         )}
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" style={{ perspective: '1000px' }}>
+          {projects.map((p, idx) => (
+            <ProjectCard key={p.id || p.slug} project={p} idx={idx} />
+          ))}
+        </div>
       </div>
     </section>
   )
 }
-
-export default Projects;

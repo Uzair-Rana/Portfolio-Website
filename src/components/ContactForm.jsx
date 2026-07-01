@@ -1,8 +1,9 @@
 import { useState } from 'react'
-import { submitContact } from '../lib/api.js'
 import { FaPaperPlane } from 'react-icons/fa'
+import { useSettings } from '../context/SettingsContext.jsx'
 
 function ContactForm() {
+  const { settings } = useSettings()
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
   const [status, setStatus] = useState(null) // null | 'sending' | 'success' | 'error'
 
@@ -18,8 +19,26 @@ function ContactForm() {
     e.preventDefault()
     if (!validate()) { setStatus('error'); return }
     setStatus('sending')
+
     try {
-      await submitContact(form)
+      // Build WhatsApp message
+      const message = `
+*New Message from Portfolio*
+
+👤 Name: ${form.name}
+📧 Email: ${form.email}
+${form.subject ? `📝 Subject: ${form.subject}` : ''}
+
+💬 Message:
+${form.message}
+      `.trim()
+      
+      // Encode for URL
+      const encodedMessage = encodeURIComponent(message)
+      
+      // Open WhatsApp
+      window.open(`${settings.whatsapp}?text=${encodedMessage}`, '_blank')
+
       setStatus('success')
       setForm({ name: '', email: '', subject: '', message: '' })
     } catch (err) {

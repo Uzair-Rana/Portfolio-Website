@@ -5,6 +5,7 @@ import Experience from '../sections/Experience.jsx'
 import Projects from '../sections/Projects.jsx'
 import Education from '../sections/Education.jsx'
 import Certifications from '../sections/Certifications.jsx'
+import Feedback from '../sections/Feedback.jsx'
 import SectionDivider from '../components/SectionDivider.jsx'
 
 function Home() {
@@ -23,6 +24,8 @@ function Home() {
       <Education />
       <SectionDivider />
       <Certifications />
+      <SectionDivider />
+      <Feedback />
     </main>
   )
 }

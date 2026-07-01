@@ -2,6 +2,7 @@ import { lazy, Suspense, useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer.jsx'
+import FloatingButtons from './components/FloatingButtons.jsx'
 import SettingsPanel from './components/SettingsPanel.jsx'
 import ScrollToTop from './components/ScrollToTop.jsx'
 import Home from './pages/Home.jsx'
@@ -39,9 +40,11 @@ function App() {
         </Routes>
       </Suspense>
       <Footer />
+      <FloatingButtons />
       <SettingsPanel open={settingsOpen} onClose={() => setSettingsOpen(false)} />
     </div>
   )
 }
 
 export default App
+  

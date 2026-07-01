@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { LazyMotion, domAnimation } from 'framer-motion'
 import { SettingsProvider } from './context/SettingsContext.jsx'
 import './index.css'
+import './styles/advanced.css'
 import App from './App.jsx'
 
 createRoot(document.getElementById('root')).render(

@@ -22,6 +22,9 @@ export const DEFAULT_SETTINGS = {
     email: 'uzairanjummrana@gmail.com',
     phone: '+92 310-7575202',
     github: 'https://github.com/Uzair-Rana',
+    linkedin: 'https://www.linkedin.com/in/uzi-anjum',
+    whatsapp: 'https://wa.me/923107575202',
+    resumeUrl: '/Resume/Uzair Anjum(CV).pdf',
     photoUrl: '/images/profile.jpg',
     available: true,
     availableText: 'Available for opportunities',
@@ -127,7 +130,7 @@ export const DEFAULT_EXPERIENCES = [
         company: 'SystemsD',
         location: 'Johar Town, Lahore',
         role: 'Full-Stack Developer',
-        period: '2025 – Present',
+        period: 'July 2025 – Present',
         current: true,
         tagline: 'Building scalable production web applications in a collaborative team environment.',
         summary: [

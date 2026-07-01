@@ -10,6 +10,7 @@ const navLinks = [
   { name: 'Skills', href: '#skills' },
   { name: 'Projects', href: '#projects' },
   { name: 'Experience', href: '#experience' },
+  { name: 'Feedback', href: '#feedback' },
 ]
 
 export default function Navbar({ onOpenSettings }) {
@@ -39,7 +40,7 @@ export default function Navbar({ onOpenSettings }) {
             : 'py-6 bg-transparent'
           }`}
       >
-        <nav className="container-padding mx-auto max-w-7xl flex items-center justify-between">
+        <nav className="container-custom flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-4 group">
             <div className="relative w-10 h-10 flex-shrink-0">

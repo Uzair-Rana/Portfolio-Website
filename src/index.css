@@ -48,8 +48,13 @@ body,
 }
 
 @keyframes crystalFlow {
-  0% { left: -100%; }
-  100% { left: 100%; }
+  0% {
+    left: -100%;
+  }
+
+  100% {
+    left: 100%;
+  }
 }
 
 /* 3D Card Base */
@@ -132,11 +137,16 @@ body,
 }
 
 /* Typography styles */
-.font-display { font-family: 'Bricolage Grotesque', sans-serif; }
-.font-serif { font-family: 'Instrument Serif', serif; }
+.font-display {
+  font-family: 'Bricolage Grotesque', sans-serif;
+}
+
+.font-serif {
+  font-family: 'Instrument Serif', serif;
+}
 
 .text-reveal {
-  background: linear-gradient(to right, #fff 20%, rgba(255,255,255,0.2) 80%);
+  background: linear-gradient(to right, #fff 20%, rgba(255, 255, 255, 0.2) 80%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -251,4 +261,22 @@ section[id] {
   overflow: hidden;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+
+/* ── Marquee scroll for gallery strip ── */
+@keyframes marqueeScroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none !important;
+  }
 }

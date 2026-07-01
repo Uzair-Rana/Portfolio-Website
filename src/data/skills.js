@@ -21,16 +21,22 @@ export const skillGroups = [
       { name: 'Django', level: 87 },
       { name: 'REST API Development', level: 85 },
       { name: 'GraphQL', level: 70 },
+      { name: 'Webhooks', level: 80 },
+      { name: 'WebSockets', level: 75 },
+      { name: 'ElevenLabs', level: 78 },
+      { name: 'Twilio', level: 80 },
     ],
   },
   {
-    category: 'Database',
+    category: 'Database & AI',
     color: 'from-blue-500/20 to-indigo-500/10',
     border: 'border-blue-500/20',
     accent: 'text-blue-400',
     skills: [
       { name: 'PostgreSQL', level: 83 },
       { name: 'DBeaver', level: 75 },
+      { name: 'LangGraph', level: 72 },
+      { name: 'MCP', level: 68 },
     ],
   },
   {
@@ -42,6 +48,7 @@ export const skillGroups = [
       { name: 'Git & GitHub', level: 88 },
       { name: 'VS Code', level: 92 },
       { name: 'Postman', level: 82 },
+      { name: 'CloudSkills', level: 70 },
     ],
   },
 ]
@@ -49,7 +56,7 @@ export const skillGroups = [
 // Legacy export kept for backward compat
 export const skills = {
   frontend: ['Vue.js', 'React.js', 'Tailwind CSS', 'JavaScript (ES6+)'],
-  backend: ['Python', 'Django', 'REST API Development', 'GraphQL'],
+  backend: ['Python', 'Django', 'REST API Development', 'GraphQL', 'Webhooks', 'WebSockets', 'ElevenLabs', 'Twilio'],
   devtools: ['PostgreSQL', 'DBeaver', 'Git & GitHub', 'VS Code'],
   observability: ['Postman', 'HTTP / REST APIs'],
   collaboration: ['Slack', 'GitHub'],

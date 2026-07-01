@@ -1,43 +1,46 @@
 import ContactForm from '../components/ContactForm.jsx'
 import { m as M } from 'framer-motion'
 import { FaEnvelope, FaPhone, FaGithub, FaMapMarkerAlt } from 'react-icons/fa'
-
-const contactInfo = [
-  {
-    icon: FaEnvelope,
-    label: 'Email',
-    value: 'uzairanjummrana@gmail.com',
-    href: 'mailto:uzairanjummrana@gmail.com',
-    color: 'text-[var(--primary)]',
-    bg: 'bg-[var(--primary)]/10',
-  },
-  {
-    icon: FaPhone,
-    label: 'Phone',
-    value: '+92 310-7575202',
-    href: 'tel:+923107575202',
-    color: 'text-emerald-400',
-    bg: 'bg-emerald-400/10',
-  },
-  {
-    icon: FaGithub,
-    label: 'GitHub',
-    value: 'github.com/Uzair-Rana',
-    href: 'https://github.com/Uzair-Rana',
-    color: 'text-violet-400',
-    bg: 'bg-violet-400/10',
-  },
-  {
-    icon: FaMapMarkerAlt,
-    label: 'Location',
-    value: 'Lahore, Pakistan',
-    href: null,
-    color: 'text-rose-400',
-    bg: 'bg-rose-400/10',
-  },
-]
+import { useSettings } from '../context/SettingsContext.jsx'
 
 function Contact() {
+  const { settings } = useSettings()
+
+  const contactInfo = [
+    {
+      icon: FaEnvelope,
+      label: 'Email',
+      value: settings.email,
+      href: `mailto:${settings.email}`,
+      color: 'text-[var(--primary)]',
+      bg: 'bg-[var(--primary)]/10',
+    },
+    {
+      icon: FaPhone,
+      label: 'Phone',
+      value: settings.phone,
+      href: `tel:${settings.phone}`,
+      color: 'text-emerald-400',
+      bg: 'bg-emerald-400/10',
+    },
+    {
+      icon: FaGithub,
+      label: 'GitHub',
+      value: 'github.com/Uzair-Rana',
+      href: settings.github,
+      color: 'text-violet-400',
+      bg: 'bg-violet-400/10',
+    },
+    {
+      icon: FaMapMarkerAlt,
+      label: 'Location',
+      value: settings.location,
+      href: null,
+      color: 'text-rose-400',
+      bg: 'bg-rose-400/10',
+    },
+  ]
+
   return (
     <section className="min-h-screen bg-[#080b14] relative overflow-hidden">
       {/* Background blobs */}
