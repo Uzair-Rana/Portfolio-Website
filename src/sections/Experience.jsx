@@ -13,10 +13,10 @@ function Experience() {
       <div className="absolute inset-0 z-0 pointer-events-none">
         <img src="/images/bg-tech-1.jpg" alt="" aria-hidden="true"
           className="absolute top-0 right-0 w-1/2 h-1/2 object-cover"
-          style={{ opacity: 0.35 }} loading="lazy" />
+          style={{ opacity: 0.15 }} loading="lazy" />
         <img src="/images/bg-code-screen.jpg" alt="" aria-hidden="true"
           className="absolute bottom-0 left-0 w-1/2 h-1/2 object-cover"
-          style={{ opacity: 0.35 }} loading="lazy" />
+          style={{ opacity: 0.15 }} loading="lazy" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#020617]/60 via-[#020617]/50 to-[#020617]/60" />
         <div className="absolute top-1/4 left-[-10%] w-72 h-72 bg-emerald-600/10 vibrant-glow" />
         <div className="absolute bottom-1/3 right-[-10%] w-72 h-72 bg-blue-600/10 vibrant-glow" />

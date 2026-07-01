@@ -21,7 +21,7 @@ export default function Hero() {
           src="/images/coding-setup.jpg" 
           alt="" 
           aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover opacity-25"
+          className="absolute inset-0 w-full h-full object-cover opacity-15"
           loading="eager" 
           fetchPriority="high" 
         />
@@ -49,7 +49,8 @@ export default function Hero() {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 w-full container-custom flex flex-col items-center text-center pt-40 pb-24 gap-10">
+      <div className="relative z-10 w-full container-custom flex flex-col items-center text-center pt-72 pb-24 gap-10">
+
         {/* Available Badge */}
         {settings.available && (
           <motion.div
@@ -135,54 +136,56 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1, duration: 0.8 }}
-          className="flex flex-wrap items-center justify-center gap-4 mt-10"
+          className="flex flex-col items-center justify-center gap-4 mt-10"
         >
-          <a 
-            href="#projects"
-            className="group relative overflow-hidden px-10 py-4 bg-white text-black font-black rounded-2xl shadow-2xl hover:scale-105 active:scale-95 transition-all flex items-center gap-3 uppercase tracking-tighter text-lg"
-          >
-            <span className="relative z-10">View Work</span>
-            <FaArrowRight className="group-hover:translate-x-2 transition-transform text-sm relative z-10" />
-          </a>
-          <a 
-            href={settings.resumeUrl} download
-            className="group px-10 py-4 rounded-2xl font-black text-white hover:bg-white/10 transition-all border-2 border-white/20 uppercase tracking-tighter text-lg flex items-center gap-3 backdrop-blur-md"
-          >
-            <FaFilePdf className="text-xl" />
-            Resume
-          </a>
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <a 
+              href="#projects"
+              className="group relative overflow-hidden px-10 py-4 bg-white text-black font-black rounded-2xl shadow-2xl hover:scale-105 active:scale-95 transition-all flex items-center gap-3 uppercase tracking-tighter text-lg"
+            >
+              <span className="relative z-10">View Work</span>
+              <FaArrowRight className="group-hover:translate-x-2 transition-transform text-sm relative z-10" />
+            </a>
+            <a 
+              href={settings.resumeUrl} download
+              className="group px-10 py-4 rounded-2xl font-black text-white hover:bg-white/10 transition-all border-2 border-white/20 uppercase tracking-tighter text-lg flex items-center gap-3 backdrop-blur-md"
+            >
+              <FaFilePdf className="text-xl" />
+              Resume
+            </a>
+          </div>
           <div className="flex gap-3">
-                    <a 
-                      href={settings.github} 
-                      target="_blank" 
-                      rel="noreferrer"
-                      className="group w-14 h-14 rounded-2xl flex items-center justify-center border border-white/20 text-white/70 hover:text-white hover:border-white/40 hover:bg-white/5 transition-all backdrop-blur-md"
-                    >
-                      <FaGithub className="text-xl group-hover:scale-110 transition-transform" />
-                    </a>
-                    <a 
-                      href={settings.linkedin} 
-                      target="_blank" 
-                      rel="noreferrer"
-                      className="group w-14 h-14 rounded-2xl flex items-center justify-center border border-white/20 text-white/70 hover:text-white hover:border-white/40 hover:bg-white/5 transition-all backdrop-blur-md"
-                    >
-                      <FaLinkedin className="text-xl group-hover:scale-110 transition-transform" />
-                    </a>
-                    <a 
-                      href={settings.whatsapp} 
-                      target="_blank" 
-                      rel="noreferrer"
-                      className="group w-14 h-14 rounded-2xl flex items-center justify-center border border-white/20 text-white/70 hover:text-green-400 hover:border-green-400/40 hover:bg-green-400/5 transition-all backdrop-blur-md"
-                    >
-                      <FaWhatsapp className="text-xl group-hover:scale-110 transition-transform" />
-                    </a>
-                    <a 
-                      href={`mailto:${settings.email}`} 
-                      className="group w-14 h-14 rounded-2xl flex items-center justify-center border border-white/20 text-white/70 hover:text-indigo-400 hover:border-indigo-400/40 hover:bg-indigo-400/5 transition-all backdrop-blur-md"
-                    >
-                      <FaEnvelope className="text-xl group-hover:scale-110 transition-transform" />
-                    </a>
-                  </div>
+            <a 
+              href={settings.github} 
+              target="_blank" 
+              rel="noreferrer"
+              className="group w-14 h-14 rounded-2xl flex items-center justify-center border border-white/20 text-white/70 hover:text-white hover:border-white/40 hover:bg-white/5 transition-all backdrop-blur-md"
+            >
+              <FaGithub className="text-xl group-hover:scale-110 transition-transform" />
+            </a>
+            <a 
+              href={settings.linkedin} 
+              target="_blank" 
+              rel="noreferrer"
+              className="group w-14 h-14 rounded-2xl flex items-center justify-center border border-white/20 text-white/70 hover:text-white hover:border-white/40 hover:bg-white/5 transition-all backdrop-blur-md"
+            >
+              <FaLinkedin className="text-xl group-hover:scale-110 transition-transform" />
+            </a>
+            <a 
+              href={settings.whatsapp} 
+              target="_blank" 
+              rel="noreferrer"
+              className="group w-14 h-14 rounded-2xl flex items-center justify-center border border-white/20 text-white/70 hover:text-green-400 hover:border-green-400/40 hover:bg-green-400/5 transition-all backdrop-blur-md"
+            >
+              <FaWhatsapp className="text-xl group-hover:scale-110 transition-transform" />
+            </a>
+            <a 
+              href={`mailto:${settings.email}`} 
+              className="group w-14 h-14 rounded-2xl flex items-center justify-center border border-white/20 text-white/70 hover:text-indigo-400 hover:border-indigo-400/40 hover:bg-indigo-400/5 transition-all backdrop-blur-md"
+            >
+              <FaEnvelope className="text-xl group-hover:scale-110 transition-transform" />
+            </a>
+          </div>
         </motion.div>
 
         {/* Tech Badges */}

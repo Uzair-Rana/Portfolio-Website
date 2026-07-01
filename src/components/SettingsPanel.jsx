@@ -227,6 +227,9 @@ function TabProfile() {
             <Field label="Email" value={settings.email} onChange={v => update({ email: v })} type="email" />
             <Field label="Phone" value={settings.phone} onChange={v => update({ phone: v })} placeholder="+92 310-0000000" />
             <Field label="GitHub" value={settings.github} onChange={v => update({ github: v })} placeholder="https://github.com/username" />
+            <Field label="LinkedIn" value={settings.linkedin} onChange={v => update({ linkedin: v })} placeholder="https://linkedin.com/in/username" />
+            <Field label="WhatsApp" value={settings.whatsapp} onChange={v => update({ whatsapp: v })} placeholder="https://wa.me/1234567890" />
+            <Field label="Resume URL" value={settings.resumeUrl} onChange={v => update({ resumeUrl: v })} placeholder="/Resume/YourCV.pdf" />
 
             <SectionHead icon={FaToggleOn} label="Status" />
             <Toggle value={settings.available} onChange={v => update({ available: v })} label="Show availability badge" />

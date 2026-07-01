@@ -1,13 +1,20 @@
 import { useState } from 'react'
-import { FaPaperPlane } from 'react-icons/fa'
+import { FaPaperPlane, FaFileUpload } from 'react-icons/fa'
 import { useSettings } from '../context/SettingsContext.jsx'
 
 function ContactForm() {
   const { settings } = useSettings()
-  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
+  const [form, setForm] = useState({ 
+    name: '', 
+    email: '', 
+    subject: '', 
+    message: '',
+    attachment: null
+  })
   const [status, setStatus] = useState(null) // null | 'sending' | 'success' | 'error'
 
   const set = (field) => (e) => setForm((f) => ({ ...f, [field]: e.target.value }))
+  const setFile = (field) => (e) => setForm((f) => ({ ...f, [field]: e.target.files[0] }))
 
   const validate = () => {
     if (!form.name.trim() || !form.email.trim() || !form.message.trim()) return false
@@ -28,6 +35,7 @@ function ContactForm() {
 👤 Name: ${form.name}
 📧 Email: ${form.email}
 ${form.subject ? `📝 Subject: ${form.subject}` : ''}
+${form.attachment ? `📎 Attachment: ${form.attachment.name}` : ''}
 
 💬 Message:
 ${form.message}
@@ -40,7 +48,7 @@ ${form.message}
       window.open(`${settings.whatsapp}?text=${encodedMessage}`, '_blank')
 
       setStatus('success')
-      setForm({ name: '', email: '', subject: '', message: '' })
+      setForm({ name: '', email: '', subject: '', message: '', attachment: null })
     } catch (err) {
       console.error('Contact form error:', err)
       setStatus('error')
@@ -86,17 +94,40 @@ ${form.message}
         />
       </div>
 
-      <div>
+      <div className="relative">
         <label className="block text-white/50 text-xs uppercase tracking-wider mb-1.5">Message *</label>
         <textarea
           value={form.message}
           onChange={set('message')}
           placeholder="Tell me about your project or opportunity..."
           rows={5}
-          className={`${inputClass} resize-none`}
+          className={`${inputClass} resize-none pr-12`}
           required
         />
+        <label className="absolute bottom-3 right-3 p-2 rounded-lg text-white/60 hover:text-[var(--primary)] cursor-pointer transition-all">
+          <FaFileUpload size={18} />
+          <input
+            type="file"
+            id="attachment"
+            className="hidden"
+            onChange={setFile('attachment')}
+          />
+        </label>
       </div>
+
+      {form.attachment && (
+        <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white/80">
+          <FaFileUpload className="text-[var(--primary)]" />
+          <span className="text-sm truncate flex-1">{form.attachment.name}</span>
+          <button
+            type="button"
+            onClick={() => setForm((f) => ({ ...f, attachment: null }))}
+            className="text-white/40 hover:text-white/80 transition-all"
+          >
+            ×
+          </button>
+        </div>
+      )}
 
       <button
         type="submit"

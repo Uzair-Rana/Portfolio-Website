@@ -21,7 +21,7 @@ function Certifications() {
       <div className="absolute inset-0 z-0 pointer-events-none">
         <img src="/images/coding-setup.jpg" alt="" aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover"
-          style={{ opacity: 0.35 }} loading="lazy" />
+          style={{ opacity: 0.15 }} loading="lazy" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#020617]/70 via-[#020617]/50 to-[#020617]/70" />
         <div className="absolute top-1/4 right-[-10%] w-72 h-72 bg-pink-600/10 vibrant-glow" />
         <div className="absolute bottom-1/3 left-[-10%] w-72 h-72 bg-purple-600/10 vibrant-glow" />

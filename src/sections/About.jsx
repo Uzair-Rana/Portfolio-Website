@@ -29,7 +29,7 @@ function About() {
           alt=""
           aria-hidden="true"
           className="w-full h-full object-cover object-center"
-          style={{ opacity: 0.35 }}
+          style={{ opacity: 0.15 }}
           loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-br from-[#020617]/60 via-[#020617]/50 to-[#020617]/60" />

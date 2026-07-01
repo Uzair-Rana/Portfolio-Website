@@ -12,7 +12,7 @@ function Feedback() {
           alt="" 
           aria-hidden="true"
           className="absolute top-0 right-0 w-1/2 h-1/2 object-cover"
-          style={{ opacity: 0.35 }} 
+          style={{ opacity: 0.15 }} 
           loading="lazy" 
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#020617]/60 via-[#020617]/50 to-[#020617]/60" />
