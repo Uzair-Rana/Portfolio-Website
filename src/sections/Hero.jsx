@@ -49,7 +49,7 @@ export default function Hero() {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 w-full container-custom flex flex-col items-center text-center pt-20 sm:pt-24 md:pt-32 pb-16 sm:pb-20 md:pb-24 gap-6 sm:gap-8 md:gap-10 px-4">
+      <div className="relative z-10 w-full container-custom flex flex-col items-center text-center pt-20 sm:pt-24 md:pt-32 lg:pt-40 xl:pt-48 pb-16 sm:pb-20 md:pb-24 gap-6 sm:gap-8 md:gap-10 lg:gap-12 px-4">
 
         {/* Available Badge */}
         {settings.available && (
