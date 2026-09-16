@@ -3,10 +3,10 @@ import { FaCode, FaRocket, FaUsers, FaLightbulb, FaMapMarkerAlt, FaEnvelope, FaP
 import { useSettings } from '../context/SettingsContext.jsx'
 
 const strengths = [
-  { icon: FaCode, label: 'Full-Stack Development', desc: 'End-to-end web apps from DB schema to polished UI', color: 'text-indigo-400' },
-  { icon: FaRocket, label: 'API Integration', desc: 'Third-party APIs, automation workflows, webhooks', color: 'text-pink-400' },
-  { icon: FaUsers, label: 'Team Collaboration', desc: 'Cross-functional teams, Git workflows, code reviews', color: 'text-violet-400' },
-  { icon: FaLightbulb, label: 'Clean Code', desc: 'Maintainable, scalable, and well-documented solutions', color: 'text-emerald-400' },
+  { icon: FaCode, label: 'Full-Stack Development', desc: 'Build complete applications—database design, backend APIs, responsive interfaces', color: 'text-indigo-400' },
+  { icon: FaRocket, label: 'Problem-Solving', desc: 'Debug performance issues, optimize queries, fix what breaks in production', color: 'text-pink-400' },
+  { icon: FaUsers, label: 'Team Work', desc: 'Mentor juniors, code review, Git workflows, ship features together', color: 'text-violet-400' },
+  { icon: FaLightbulb, label: 'Practical Code', desc: 'Write code that works, not code that looks impressive. Pragmatic over perfect.', color: 'text-emerald-400' },
 ]
 
 function About() {
@@ -20,23 +20,9 @@ function About() {
   ]
 
   return (
-    <section id="about" className="section-padding relative overflow-hidden">
+    <section id="about" className="section-padding relative overflow-hidden bg-white">
 
-      {/* ── Subtle image background ── */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="/images/developer-desktop.jpg"
-          alt=""
-          aria-hidden="true"
-          className="w-full h-full object-cover object-center"
-          style={{ opacity: 0.15 }}
-          loading="lazy"
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-[#020617]/60 via-[#020617]/50 to-[#020617]/60" />
-      </div>
-
-      <div className="absolute top-1/2 left-[-10%] w-[40%] h-[40%] bg-indigo-600/10 vibrant-glow z-0" />
-      <div className="absolute top-1/2 right-[-10%] w-[40%] h-[40%] bg-pink-600/10 vibrant-glow z-0" />
+      {/* Removed excessive background effects for cleaner look */}
 
       <div className="relative z-10 container-custom">
         {/* Header */}
@@ -44,18 +30,18 @@ function About() {
           <motion.span
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            className="text-xs md:text-sm font-black text-pink-400 uppercase tracking-[0.4em]"
+            className="text-xs md:text-sm font-black text-red-600 uppercase tracking-[0.4em]"
           >
-            The Architect
+            Who I Am
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="font-display text-4xl sm:text-6xl lg:text-8xl font-black text-white tracking-tighter leading-none"
+            className="font-display text-4xl sm:text-6xl lg:text-8xl font-black text-gray-900 tracking-tighter leading-none"
           >
-            Crafting Digital <span className="text-gradient-vibrant">Precision</span>
+            Full-Stack Developer <span className="text-gradient-vibrant">Building Real Solutions</span>
           </motion.h2>
-          <div className="w-24 md:w-32 h-[2px] bg-gradient-to-r from-indigo-500 to-pink-500 rounded-full" />
+          <div className="w-24 md:w-32 h-[2px] bg-gradient-to-r from-blue-600 to-red-600 rounded-full" />
         </div>
 
         {/* Main content grid */}
@@ -68,19 +54,22 @@ function About() {
             viewport={{ once: true }}
             className="lg:col-span-3 space-y-8"
           >
-            <div className="space-y-5 text-gray-200 text-lg md:text-xl font-serif italic leading-relaxed">
+            <div className="space-y-5 text-black text-lg md:text-xl leading-relaxed">
               <p>
-                Motivated and detail-oriented Full-Stack Developer with 1+ year of hands-on industry experience
-                building scalable, production-grade web applications at SystemsD, Lahore.
+                I'm a full-stack developer based in Lahore, Pakistan. I've spent the last couple of years building
+                web applications and custom software—mostly backend work with Django and databases, but I handle
+                frontends too (React, Vue, whatever the job needs). Right now I'm at DevNest System building custom
+                solutions for clients.
               </p>
               <p>
-                I specialize in backend development using Django and PostgreSQL, with strong frontend expertise
-                in Vue.js, React.js, and Tailwind CSS.
+                I like solving real problems. Slow endpoints? I'll optimize the queries and add caching. Repetitive
+                workflows? Automate them. I use AI tools like Claude in my daily work to write and review code faster.
+                I'm also into mentoring junior devs and working through the messy parts of production systems.
               </p>
             </div>
 
             {/* Coding image inline — proportional height */}
-            <div className="relative rounded-xl overflow-hidden border border-white/10 h-44">
+            <div className="relative rounded-lg overflow-hidden border border-gray-300 h-44">
               <img
                 src="/images/coding-main.jpg"
                 alt="Coding workspace"
@@ -94,14 +83,14 @@ function About() {
             </div>
 
             {/* Quick info */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-white/10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-gray-300">
               {quickInfo.map((info, i) => (
                 <div key={i} className="flex items-center gap-4 group">
-                  <div className={`p-4 rounded-2xl bg-white/10 border border-white/20 ${info.color} group-hover:scale-110 transition-transform shadow-lg`}>
+                  <div className={`p-4 rounded-lg bg-gray-100 border border-gray-300 ${info.color} group-hover:scale-110 transition-transform shadow-sm`}>
                     <info.icon className="text-xl" />
                   </div>
                   <div className="overflow-hidden">
-                    <p className="text-xs text-gray-400 uppercase tracking-[0.2em] font-black">{info.label}</p>
+                    <p className="text-xs text-gray-600 uppercase tracking-[0.2em] font-black">{info.label}</p>
                     {info.href ? (
                       <a href={info.href}
                         target={info.href.startsWith('http') ? '_blank' : undefined}
@@ -110,7 +99,7 @@ function About() {
                         {info.value}
                       </a>
                     ) : (
-                      <p className="text-white font-bold tracking-tight text-base truncate">{info.value}</p>
+                      <p className="text-gray-900 font-bold tracking-tight text-base truncate">{info.value}</p>
                     )}
                   </div>
                 </div>
@@ -125,7 +114,7 @@ function About() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="relative rounded-xl overflow-hidden border border-white/8 h-36"
+              className="relative rounded-lg overflow-hidden border border-gray-300 h-36"
             >
               <img
                 src="/images/web-design.jpg"
@@ -133,8 +122,8 @@ function About() {
                 className="w-full h-full object-cover object-center"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#020617]/70 to-transparent" />
-              <span className="absolute bottom-2.5 left-3.5 text-white/60 font-black text-xs uppercase tracking-widest">
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-900/40 to-transparent" />
+              <span className="absolute bottom-2.5 left-3.5 text-gray-700 font-black text-xs uppercase tracking-widest">
                 Creative Process
               </span>
             </motion.div>
@@ -148,15 +137,15 @@ function About() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
                 whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                className="glass-card-vibrant p-5 border-white/5 space-y-2 hover:bg-white/[0.05] transition-all group rounded-2xl"
+                className="glass-card-vibrant p-5 space-y-2 transition-all group rounded-lg"
               >
                 <div className="flex items-center gap-3">
-                  <div className={`p-2.5 rounded-xl bg-white/5 border border-white/10 ${s.color} group-hover:scale-110 transition-transform`}>
+                  <div className={`p-2.5 rounded-lg bg-gray-100 border border-gray-300 ${s.color} group-hover:scale-110 transition-transform`}>
                     <s.icon className="text-lg" />
                   </div>
-                  <h3 className="text-sm font-black text-white tracking-tight uppercase">{s.label}</h3>
+                  <h3 className="text-sm font-black text-gray-900 tracking-tight uppercase">{s.label}</h3>
                 </div>
-                <p className="text-gray-500 text-xs font-serif italic leading-relaxed pl-1">{s.desc}</p>
+                <p className="text-black text-xs font-serif italic leading-relaxed pl-1">{s.desc}</p>
               </motion.div>
             ))}
           </div>

@@ -10,7 +10,7 @@ import SectionDivider from '../components/SectionDivider.jsx'
 
 function Home() {
   return (
-    <main className="bg-[#080b14]">
+    <main className="bg-white">
       <Hero />
       <SectionDivider />
       <About />

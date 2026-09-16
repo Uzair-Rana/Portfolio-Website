@@ -34,26 +34,26 @@ const iconMap = {
 /* — Category config — */
 const categoryConfig = {
   'Frontend': {
-    dot: 'bg-cyan-400', label: 'text-cyan-400', border: 'border-cyan-500/25',
-    barColor: 'from-cyan-500 to-blue-500',
+    dot: 'bg-blue-600', label: 'text-blue-600', border: 'border-blue-200',
+    barColor: 'from-blue-500 to-cyan-500',
     img: '/images/web-design.jpg', imgLabel: 'UI / Frontend',
     desc: 'Building responsive, performant user interfaces with modern JavaScript frameworks and utility-first CSS.',
   },
   'Backend': {
-    dot: 'bg-emerald-400', label: 'text-emerald-400', border: 'border-emerald-500/25',
-    barColor: 'from-emerald-500 to-teal-500',
+    dot: 'bg-green-600', label: 'text-green-600', border: 'border-green-200',
+    barColor: 'from-green-500 to-teal-500',
     img: '/images/coding-main.jpg', imgLabel: 'Backend / API',
     desc: 'Designing scalable server-side systems, RESTful and GraphQL APIs with Django and Python. Webhooks, websockets, and third‑party integrations included.',
   },
   'Database & AI': {
-    dot: 'bg-blue-400', label: 'text-blue-400', border: 'border-blue-500/25',
-    barColor: 'from-blue-500 to-indigo-500',
+    dot: 'bg-purple-600', label: 'text-purple-600', border: 'border-purple-200',
+    barColor: 'from-purple-500 to-indigo-500',
     img: '/images/developer-desktop.jpg', imgLabel: 'Data & AI',
     desc: 'Database management with PostgreSQL, plus AI tooling like LangGraph, MCP, and more.',
   },
   'Tools & Technologies': {
-    dot: 'bg-violet-400', label: 'text-violet-400', border: 'border-violet-500/25',
-    barColor: 'from-violet-500 to-purple-500',
+    dot: 'bg-orange-600', label: 'text-orange-600', border: 'border-orange-200',
+    barColor: 'from-orange-500 to-red-500',
     img: '/images/coding-setup.jpg', imgLabel: 'Dev Tools',
     desc: 'Streamlining development with Git, VS Code, Postman, and other industry-standard tooling.',
   },
@@ -77,36 +77,23 @@ const marqueeImages = [
 
 function Skills() {
   return (
-    <section id="skills" className="section-padding relative overflow-hidden">
-
-      {/* — Section background — */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <img src="/images/bg-abstract-3.jpg" alt="" aria-hidden="true"
-          className="absolute top-0 left-0 w-1/2 h-1/2 object-cover"
-          style={{ opacity: 0.15 }} loading="lazy" />
-        <img src="/images/bg-abstract-2.jpg" alt="" aria-hidden="true"
-          className="absolute bottom-0 right-0 w-1/2 h-1/2 object-cover"
-          style={{ opacity: 0.15 }} loading="lazy" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#020617]/60 via-[#020617]/50 to-[#020617]/60" />
-        <div className="absolute top-1/3 left-[-8%] w-72 h-72 bg-indigo-600/12 vibrant-glow" />
-        <div className="absolute bottom-1/4 right-[-8%] w-72 h-72 bg-pink-600/12 vibrant-glow" />
-      </div>
+    <section id="skills" className="section-padding relative overflow-hidden bg-white">
 
       <div className="relative z-10 container-custom">
 
         {/* Header */}
         <div className="max-w-3xl mb-16 text-center mx-auto space-y-5">
           <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}
-            className="text-sm font-black text-pink-400 uppercase tracking-[0.4em]"
+            className="text-sm font-black text-red-600 uppercase tracking-[0.4em]"
           >
             Capabilities
           </motion.span>
           <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-            className="font-display text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tighter"
+            className="font-display text-4xl sm:text-6xl lg:text-7xl font-black text-gray-900 tracking-tighter"
           >
             Technical <span className="text-gradient-vibrant">Ecosystem</span>
           </motion.h2>
-          <div className="w-32 h-[2px] bg-gradient-to-r from-indigo-500 to-pink-500 rounded-full mx-auto" />
+          <div className="w-32 h-[2px] bg-gradient-to-r from-blue-600 to-red-600 rounded-full mx-auto" />
         </div>
 
         {/* — Skill category cards — */}
@@ -122,7 +109,7 @@ function Skills() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-60px' }}
                 transition={{ duration: 0.55, delay: gIdx * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} rounded-2xl overflow-hidden border ${cfg.border} bg-white/[0.025]`}
+                className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} rounded-lg overflow-hidden border ${cfg.border} bg-gray-50`}
               >
                 {/* — Content box — */}
                 <div className="flex-1 p-6 flex flex-col justify-between gap-5 min-h-[220px]">
@@ -135,7 +122,7 @@ function Skills() {
                         {group.category}
                       </h3>
                     </div>
-                    <p className="text-gray-300 text-sm leading-relaxed font-medium">
+                    <p className="text-black text-sm leading-relaxed font-medium">
                       {cfg.desc}
                     </p>
                   </div>

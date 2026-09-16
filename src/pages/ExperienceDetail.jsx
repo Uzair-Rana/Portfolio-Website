@@ -13,10 +13,10 @@ function ExperienceDetail() {
 
     if (!exp) {
         return (
-            <div className="min-h-screen bg-[#080b14] flex flex-col items-center justify-center gap-6 text-center px-4">
-                <p className="text-6xl font-extrabold text-white/10">404</p>
-                <p className="text-white/60 text-lg">Experience not found.</p>
-                <Link to="/#experience" className="px-5 py-2.5 rounded-xl bg-[var(--primary)] text-black font-bold text-sm hover:opacity-90 transition-all">
+            <div className="min-h-screen bg-white flex flex-col items-center justify-center gap-6 text-center px-4">
+                <p className="text-6xl font-extrabold text-gray-200">404</p>
+                <p className="text-gray-600 text-lg">Experience not found.</p>
+                <Link to="/#experience" className="px-5 py-2.5 rounded-lg bg-blue-600 text-white font-bold text-sm hover:bg-blue-700 transition-all">
                     Back
                 </Link>
             </div>
@@ -27,7 +27,7 @@ function ExperienceDetail() {
     const { data: { projects } } = useSettings()
 
     return (
-        <div className="min-h-screen bg-[#080b14] relative overflow-hidden">
+        <div className="min-h-screen bg-white relative overflow-hidden">
             <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
                 <div className="absolute -top-60 -right-60 w-[600px] h-[600px] rounded-full blur-[120px] opacity-[0.05]"
                     style={{ background: 'var(--primary)' }} />
@@ -36,31 +36,31 @@ function ExperienceDetail() {
             <div className="relative z-10 container-padding mx-auto max-w-5xl pt-28 pb-24">
 
                 <button onClick={() => navigate(-1)}
-                    className="inline-flex items-center gap-2 text-white/40 hover:text-white text-sm transition-colors mb-10 group">
+                    className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 text-sm transition-colors mb-10 group">
                     <FaArrowLeft className="group-hover:-translate-x-1 transition-transform duration-200" />
                     Back
                 </button>
 
                 {/* Hero */}
                 <M.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
-                    className="glass-card rounded-3xl p-8 sm:p-12 mb-10">
+                    className="glass-card-vibrant rounded-lg p-8 sm:p-12 mb-10 border border-gray-300">
                     <div className="flex flex-col sm:flex-row sm:items-center gap-6">
-                        <div className="w-20 h-20 rounded-2xl bg-[var(--primary)]/10 border border-[var(--primary)]/20 flex items-center justify-center flex-shrink-0">
-                            <FaBriefcase className="text-4xl text-[var(--primary)]" />
+                        <div className="w-20 h-20 rounded-lg bg-blue-100 border border-blue-300 flex items-center justify-center flex-shrink-0">
+                            <FaBriefcase className="text-4xl text-blue-600" />
                         </div>
                         <div className="flex-1">
                             <div className="flex flex-wrap items-center gap-3 mb-2">
-                                <h1 className="text-3xl sm:text-4xl font-extrabold text-white">{exp.role}</h1>
+                                <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900">{exp.role}</h1>
                                 {exp.current && (
-                                    <span className="px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-400 text-xs font-bold border border-emerald-500/20">
+                                    <span className="px-3 py-1 rounded-full bg-green-100 text-green-700 text-xs font-bold border border-green-300">
                                         Current
                                     </span>
                                 )}
                             </div>
-                            <p className="text-[var(--primary)] font-bold text-lg">{exp.company}</p>
-                            <p className="text-white/40 text-sm mt-0.5">{exp.location} · {exp.period}</p>
+                            <p className="text-blue-600 font-bold text-lg">{exp.company}</p>
+                            <p className="text-gray-600 text-sm mt-0.5">{exp.location} · {exp.period}</p>
                             {exp.tagline && (
-                                <p className="text-white/60 text-base leading-relaxed mt-3 max-w-2xl">{exp.tagline}</p>
+                                <p className="text-black text-base leading-relaxed mt-3 max-w-2xl">{exp.tagline}</p>
                             )}
                         </div>
                     </div>
@@ -72,9 +72,9 @@ function ExperienceDetail() {
 
                         {exp.bullets?.length > 0 && (
                             <M.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}
-                                className="glass-card rounded-2xl p-7">
-                                <h2 className="text-lg font-bold text-white mb-5 flex items-center gap-2">
-                                    <span className="w-1 h-5 rounded-full inline-block bg-[var(--primary)]" />
+                                className="glass-card-vibrant rounded-lg p-7 border border-gray-300">
+                                <h2 className="text-lg font-bold text-gray-900 mb-5 flex items-center gap-2">
+                                    <span className="w-1 h-5 rounded-full inline-block bg-blue-600" />
                                     Responsibilities
                                 </h2>
                                 <ul className="space-y-3.5">

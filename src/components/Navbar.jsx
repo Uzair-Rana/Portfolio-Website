@@ -36,7 +36,7 @@ export default function Navbar({ onOpenSettings }) {
         initial={{ y: -64, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
-            ? 'py-4 bg-[#020617]/80 backdrop-blur-2xl border-b border-white/5'
+            ? 'py-4 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm'
             : 'py-6 bg-transparent'
           }`}
       >
@@ -52,27 +52,27 @@ export default function Navbar({ onOpenSettings }) {
                 onError={(e) => { e.currentTarget.style.display = 'none' }}
               />
             </div>
-            <span className="font-display font-black text-xl text-white tracking-tight uppercase">
+            <span className="font-display font-black text-xl text-gray-900 tracking-tight uppercase">
               {displayName}
             </span>
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center gap-2 glass-morphism p-1 rounded-full border-white/5">
+          <div className="hidden lg:flex items-center gap-2 bg-gray-100 p-1 rounded-full border border-gray-300">
             {navLinks.map((link) => (
               isHome ? (
                 <a
                   key={link.name}
                   href={link.href}
-                  className="px-5 py-2 rounded-full text-xs font-black uppercase tracking-widest text-gray-400 hover:text-white hover:bg-white/5 transition-all"
+                  className="px-5 py-2 rounded-full text-xs font-black uppercase tracking-widest text-gray-600 hover:text-gray-900 hover:bg-white transition-all"
                 >
                   {link.name}
                 </a>
               ) : (
-                <Link 
-                  key={link.name} 
-                  to={`/${link.href}`} 
-                  className="px-5 py-2 rounded-full text-xs font-black uppercase tracking-widest text-gray-400 hover:text-white hover:bg-white/5 transition-all"
+                <Link
+                  key={link.name}
+                  to={`/${link.href}`}
+                  className="px-5 py-2 rounded-full text-xs font-black uppercase tracking-widest text-gray-600 hover:text-gray-900 hover:bg-white transition-all"
                 >
                   {link.name}
                 </Link>
@@ -83,13 +83,13 @@ export default function Navbar({ onOpenSettings }) {
           {/* Desktop Actions */}
           <div className="hidden lg:flex items-center gap-4">
             <a href={settings.github} target="_blank" rel="noreferrer"
-              className="p-3 rounded-full glass-morphism border-white/5 text-gray-400 hover:text-white transition-all"
+              className="p-3 rounded-lg bg-gray-100 border border-gray-300 text-gray-600 hover:text-gray-900 hover:bg-gray-200 transition-all"
             >
               <FaGithub className="text-lg" />
             </a>
             <button
               onClick={onOpenSettings}
-              className="px-6 py-3 rounded-full bg-white text-black text-xs font-black uppercase tracking-widest hover:scale-105 active:scale-95 transition-all"
+              className="px-6 py-3 rounded-lg bg-blue-600 text-white text-xs font-black uppercase tracking-widest hover:bg-blue-700 active:scale-95 transition-all"
             >
               Settings
             </button>

@@ -7,12 +7,12 @@ html,
 body,
 #root {
   height: 100%;
-  background-color: #020617;
-  color: white;
-  font-family: 'Inter', sans-serif;
+  background-color: #ffffff;
+  color: #1f2937;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
 }
 
-/* Smooth scroll only on anchor clicks, not programmatic */
+/* Smooth scroll */
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
@@ -21,63 +21,18 @@ body,
 
 /* Theme variables */
 :root {
-  --primary: #6366f1;
-  --accent: #f472b6;
-  --secondary: #8b5cf6;
-  --highlight: #10b981;
-  --surface: rgba(255, 255, 255, 0.02);
-  --glass: rgba(255, 255, 255, 0.03);
-  --glass-border: rgba(255, 255, 255, 0.1);
+  --primary: #2563eb;
+  --accent: #dc2626;
+  --secondary: #7c3aed;
+  --highlight: #059669;
+  --surface: rgba(0, 0, 0, 0.02);
+  --glass: rgba(0, 0, 0, 0.03);
+  --glass-border: rgba(0, 0, 0, 0.1);
 }
 
-/* Crystal Line Effect */
-.crystal-line {
-  position: relative;
-  overflow: hidden;
-}
-
-.crystal-line::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--primary), var(--accent), transparent);
-  animation: crystalFlow 3s infinite linear;
-}
-
-@keyframes crystalFlow {
-  0% {
-    left: -100%;
-  }
-
-  100% {
-    left: 100%;
-  }
-}
-
-/* 3D Card Base */
-.card-3d-wrap {
-  perspective: 1000px;
-}
-
-.card-3d-inner {
-  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-  transform-style: preserve-3d;
-}
-
-/* Vibrant Glows */
-.vibrant-glow {
-  filter: blur(80px);
-  opacity: 0.4;
-  mix-blend-mode: screen;
-  pointer-events: none;
-}
-
-/* Colorful Text */
+/* Simple text gradient */
 .text-gradient-vibrant {
-  background: linear-gradient(135deg, #6366f1 0%, #f472b6 50%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #2563eb 0%, #dc2626 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -85,168 +40,92 @@ body,
 
 /* Adjusted Spaces */
 .section-padding {
-  padding: 4rem 0;
+  padding: 3rem 0;
 }
 
 @media (min-width: 768px) {
   .section-padding {
-    padding: 8rem 0;
+    padding: 6rem 0;
   }
 }
 
 .container-custom {
   width: 100%;
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 1.5rem;
 }
 
 @media (min-width: 768px) {
   .container-custom {
-    padding: 0 3rem;
+    padding: 0 2rem;
   }
 }
 
-/* Glass Card Enhanced */
+/* Minimal card style */
 .glass-card-vibrant {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(15px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-  transition: all 0.3s ease;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  transition: all 0.2s ease;
 }
 
 .glass-card-vibrant:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 35px 60px -15px rgba(99, 102, 241, 0.3);
+  background: #f3f4f6;
+  border-color: #d1d5db;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #020617;
+  background: #ffffff;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
-  border-radius: 10px;
+  background: #cbd5e1;
+  border-radius: 4px;
 }
 
-/* Typography styles */
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Typography */
 .font-display {
-  font-family: 'Bricolage Grotesque', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 700;
 }
 
 .font-serif {
-  font-family: 'Instrument Serif', serif;
-}
-
-.text-reveal {
-  background: linear-gradient(to right, #fff 20%, rgba(255, 255, 255, 0.2) 80%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  font-family: 'Georgia', 'Garamond', serif;
 }
 
 .heading-huge {
-  font-size: clamp(2.5rem, 12vw, 8rem);
-  line-height: 0.9;
-  letter-spacing: -0.04em;
-  font-weight: 800;
+  font-size: clamp(2rem, 10vw, 5rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  color: #111827;
 }
 
-.glass-morphism {
-  background: rgba(15, 23, 42, 0.4);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.noise-bg {
-  position: relative;
-}
-
-.noise-bg::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-  opacity: 0.05;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.animate-fade.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.animate-slide-left {
-  opacity: 0;
-  transform: translateX(-30px);
-  transition: all 0.8s ease-out;
-}
-
-.animate-slide-left.show {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.animate-slide-right {
-  opacity: 0;
-  transform: translateX(30px);
-  transition: all 0.8s ease-out;
-}
-
-.animate-slide-right.show {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.animate-scale {
-  opacity: 0;
-  transform: scale(0.9);
-  transition: all 0.8s ease-out;
-}
-
-.animate-scale.show {
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* Skill bar fill — CSS-only, no JS animation overhead */
-.skill-bar-fill {
-  width: 0;
-  transition: width 0.8s ease-out;
-}
-
-/* When the parent card is visible (framer-motion sets opacity:1),
-   the bar animates. We use a small delay via animation-fill-mode. */
-[style*="opacity: 1"] .skill-bar-fill,
-[style*="opacity:1"] .skill-bar-fill {
-  width: var(--bar-width);
-}
-
-/* Scroll margin so anchors don't hide under fixed navbar */
+/* Scroll margin */
 section[id] {
-  scroll-margin-top: 72px;
+  scroll-margin-top: 60px;
 }
 
 .lightbox-overlay {
   position: fixed;
   inset: 0;
   z-index: 50;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.5);
   display: grid;
   place-items: center;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.3s ease;
 }
 
 .lightbox-overlay.show {
@@ -257,19 +136,17 @@ section[id] {
 .lightbox-content {
   max-width: 90vw;
   max-height: 85vh;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  border: 1px solid #e5e7eb;
 }
 
-
-/* ── Marquee scroll for gallery strip ── */
+/* Minimal marquee */
 @keyframes marqueeScroll {
   0% {
     transform: translateX(0);
   }
-
   100% {
     transform: translateX(-50%);
   }

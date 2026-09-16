@@ -56,13 +56,13 @@ ${form.message}
   }
 
   const inputClass =
-    'w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-white placeholder-white/30 text-sm focus:outline-none focus:border-[var(--primary)]/50 focus:bg-white/8 transition-all'
+    'w-full rounded-lg bg-gray-100 border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-500 text-sm focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100 transition-all'
 
   return (
     <form onSubmit={onSubmit} className="space-y-4" noValidate>
       <div className="grid sm:grid-cols-2 gap-4">
         <div>
-          <label className="block text-white/50 text-xs uppercase tracking-wider mb-1.5">Name *</label>
+          <label className="block text-gray-700 text-xs uppercase tracking-wider mb-1.5 font-bold">Name *</label>
           <input
             value={form.name}
             onChange={set('name')}
@@ -104,7 +104,7 @@ ${form.message}
           className={`${inputClass} resize-none pr-12`}
           required
         />
-        <label className="absolute bottom-3 right-3 p-2 rounded-lg text-white/60 hover:text-[var(--primary)] cursor-pointer transition-all">
+        <label className="absolute bottom-3 right-3 p-2 rounded-lg text-gray-600 hover:text-blue-600 cursor-pointer transition-all">
           <FaFileUpload size={18} />
           <input
             type="file"
@@ -116,13 +116,13 @@ ${form.message}
       </div>
 
       {form.attachment && (
-        <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white/80">
-          <FaFileUpload className="text-[var(--primary)]" />
+        <div className="flex items-center gap-3 px-4 py-3 rounded-lg bg-blue-100 border border-blue-300 text-blue-900">
+          <FaFileUpload className="text-blue-600" />
           <span className="text-sm truncate flex-1">{form.attachment.name}</span>
           <button
             type="button"
             onClick={() => setForm((f) => ({ ...f, attachment: null }))}
-            className="text-white/40 hover:text-white/80 transition-all"
+            className="text-blue-600 hover:text-blue-800 transition-all font-bold"
           >
             ×
           </button>
@@ -132,11 +132,11 @@ ${form.message}
       <button
         type="submit"
         disabled={status === 'sending'}
-        className="w-full py-3 rounded-xl bg-[var(--primary)] text-black font-bold text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-all hover:scale-[1.01] disabled:opacity-60 disabled:cursor-not-allowed shadow-lg shadow-[var(--primary)]/20"
+        className="w-full py-3 rounded-lg bg-blue-600 text-white font-bold text-sm flex items-center justify-center gap-2 hover:bg-blue-700 transition-all hover:scale-[1.01] disabled:opacity-60 disabled:cursor-not-allowed shadow-md"
       >
         {status === 'sending' ? (
           <>
-            <span className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" />
+            <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
             Sending...
           </>
         ) : (
@@ -148,12 +148,12 @@ ${form.message}
       </button>
 
       {status === 'success' && (
-        <div className="flex items-center gap-2 px-4 py-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm">
+        <div className="flex items-center gap-2 px-4 py-3 rounded-lg bg-green-100 border border-green-300 text-green-800 text-sm">
           <span>✓</span> Message sent successfully! I'll get back to you soon.
         </div>
       )}
       {status === 'error' && (
-        <div className="flex items-center gap-2 px-4 py-3 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 text-sm">
+        <div className="flex items-center gap-2 px-4 py-3 rounded-lg bg-red-100 border border-red-300 text-red-800 text-sm">
           <span>✕</span> Please fill in all required fields with valid information.
         </div>
       )}

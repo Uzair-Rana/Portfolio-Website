@@ -21,10 +21,10 @@ function ProjectDetail() {
 
     if (!project) {
         return (
-            <div className="min-h-screen bg-[#080b14] flex flex-col items-center justify-center gap-6 text-center px-4">
-                <p className="text-6xl font-extrabold text-white/10">404</p>
-                <p className="text-white/60 text-lg">Project not found.</p>
-                <Link to="/#projects" className="px-5 py-2.5 rounded-xl bg-[var(--primary)] text-black font-bold text-sm hover:opacity-90 transition-all">
+            <div className="min-h-screen bg-white flex flex-col items-center justify-center gap-6 text-center px-4">
+                <p className="text-6xl font-extrabold text-gray-200">404</p>
+                <p className="text-gray-600 text-lg">Project not found.</p>
+                <Link to="/#projects" className="px-5 py-2.5 rounded-lg bg-blue-600 text-white font-bold text-sm hover:bg-blue-700 transition-all">
                     Back to Projects
                 </Link>
             </div>
@@ -35,7 +35,7 @@ function ProjectDetail() {
     const others = projects.filter((p) => p.slug !== slug)
 
     return (
-        <div className="min-h-screen bg-[#080b14] relative overflow-hidden">
+        <div className="min-h-screen bg-white relative overflow-hidden">
             <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
                 <div className="absolute -top-60 -right-60 w-[600px] h-[600px] rounded-full blur-[120px] opacity-[0.06]"
                     style={{ background: project.accentColor }} />
@@ -44,33 +44,31 @@ function ProjectDetail() {
             <div className="relative z-10 container-padding mx-auto max-w-5xl pt-28 pb-24">
 
                 <button onClick={() => navigate(-1)}
-                    className="inline-flex items-center gap-2 text-white/40 hover:text-white text-sm transition-colors mb-10 group">
+                    className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 text-sm transition-colors mb-10 group">
                     <FaArrowLeft className="group-hover:-translate-x-1 transition-transform duration-200" />
                     Back
                 </button>
 
                 {/* Hero */}
                 <M.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
-                    className={`rounded-3xl border ${project.border} bg-gradient-to-br ${project.gradientStrong || project.gradient} p-8 sm:p-12 mb-10`}>
+                    className={`rounded-lg border border-gray-300 bg-gray-50 p-8 sm:p-12 mb-10`}>
                     <div className="flex flex-col sm:flex-row sm:items-center gap-6">
-                        <div className="w-20 h-20 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
+                        <div className="w-20 h-20 rounded-lg bg-gray-100 border border-gray-300 flex items-center justify-center flex-shrink-0">
                             <Icon className={`text-4xl ${project.iconColor}`} />
                         </div>
                         <div className="flex-1">
                             <div className="flex flex-wrap items-center gap-3 mb-2">
-                                <h1 className="text-3xl sm:text-4xl font-extrabold text-white">{project.title}</h1>
-                                <span className="px-3 py-1 rounded-full text-xs font-bold border"
-                                    style={{ color: project.accentColor, borderColor: `${project.accentColor}40`, background: `${project.accentColor}15` }}>
+                                <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900">{project.title}</h1>
+                                <span className="px-3 py-1 rounded-full text-xs font-bold border border-green-300 bg-green-100 text-green-700">
                                     Live
                                 </span>
                             </div>
                             <p className={`text-base font-semibold ${project.iconColor} mb-3`}>{project.role}</p>
-                            <p className="text-white/60 text-base leading-relaxed max-w-2xl">{project.tagline}</p>
+                            <p className="text-black text-base leading-relaxed max-w-2xl">{project.tagline}</p>
                         </div>
                         {project.url && (
                             <a href={project.url} target="_blank" rel="noreferrer"
-                                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm text-black hover:opacity-90 transition-all flex-shrink-0 self-start sm:self-center"
-                                style={{ background: project.accentColor }}>
+                                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-bold text-sm text-white hover:opacity-90 transition-all flex-shrink-0 self-start sm:self-center bg-blue-600">
                                 <FaExternalLinkAlt className="text-xs" /> Visit Live
                             </a>
                         )}
