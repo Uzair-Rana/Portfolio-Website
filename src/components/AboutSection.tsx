@@ -134,7 +134,7 @@ export const AboutSection: React.FC = () => {
               className="text-xs sm:text-sm md:text-[14.5px] font-light text-[#B3A497] leading-[1.85] tracking-wide mb-10 max-w-xl"
               style={{ fontFamily: "'Montserrat', sans-serif" }}
             >
-              I'm <span className="text-[#F3DBB3] font-medium">Muhammad Uzair Anjum</span>, a Full-Stack Software Engineer based in Lahore, Pakistan. For more than a year I've been delivering custom web applications, RESTful APIs, AI features and LLM integrations with Django, React and Vue.js. I deploy them on AWS with Docker, tune PostgreSQL and Redis for speed, and mentor junior developers on API design and cloud deployment.
+              I'm <span className="text-[#F3DBB3] font-medium">Muhammad Uzair Anjum</span>, an AI Full-Stack Engineer based in Lahore, Pakistan. For more than a year I've been delivering custom web applications, RESTful APIs, AI features and LLM integrations with Django, React and Vue.js. I deploy them on AWS with Docker, tune PostgreSQL and Redis for speed, and mentor junior developers on API design and cloud deployment.
             </motion.p>
 
             {/* Concise 4-Item Achievement Metrics Grid */}
